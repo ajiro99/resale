@@ -1,0 +1,2 @@
+class Lense < Product
+end

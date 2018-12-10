@@ -1,0 +1,15 @@
+= form_for @body do |f|
+  - if @body.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@body.errors.count, "error")} prohibited this body from being saved:"
+      ul
+        - @body.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :maker
+    = f.select :maker, Product.maker.options
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

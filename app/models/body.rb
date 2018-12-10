@@ -1,0 +1,2 @@
+class Body < Product
+end
