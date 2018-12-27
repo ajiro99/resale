@@ -64,3 +64,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'enumerize'
 gem 'seed-fu'
 gem 'slim-rails'
+gem 'foundation-rails'
+gem 'autoprefixer-rails'
+gem 'sprockets-es6'

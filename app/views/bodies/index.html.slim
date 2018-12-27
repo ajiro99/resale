@@ -6,7 +6,6 @@ table.striped
       th ID
       th Maker
       th Name
-      th Color
       th
       th
       th
@@ -17,7 +16,6 @@ table.striped
         td = body.id
         td = body.maker
         td = body.name
-        td = body.color
         td = link_to 'Edit', edit_body_path(body)
         td = link_to 'Destroy', body, data: { confirm: 'Are you sure?' }, method: :delete
 
