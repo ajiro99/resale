@@ -10,10 +10,49 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require foundation
-require_tree .
+//= require turbolinks
+//= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+
+  $(document).on('change', "#stocking_product_type", function (){
+
+  });
+
+  $(document).on('keyup', "#stocking_purchase_price", function (){
+      stocking_purchase_price = 0
+      stocking_shipping_cost = 0
+      stocking_use_points = 0
+
+      if ($("#stocking_purchase_price").val()!= "") {
+          stocking_purchase_price = parseInt($("#stocking_purchase_price").val())
+      }
+
+      if ($("#stocking_shipping_cost").val() != "") {
+          stocking_shipping_cost = parseInt($("#stocking_shipping_cost").val())
+      }
+
+      if ($("#stocking_use_points").val() != "") {
+          stocking_use_points = parseInt($("#stocking_use_points").val())
+      }
+
+      purchasing_cost = stocking_purchase_price + stocking_shipping_cost - stocking_use_points
+
+      $("#stocking_purchasing_cost").val(purchasing_cost).change();
+
+      $("#stocking_stocking_products_attributes_0_estimated_price").val(purchasing_cost).change();
+  });
+
+  $(document).on('keyup', "#stocking_shipping_cost", function (){
+      $('#stocking_purchase_price').trigger('keyup');
+  });
+
+  $(document).on('keyup', "#stocking_use_points", function (){
+      $('#stocking_purchase_price').trigger('keyup');
+  });
+});

@@ -1,0 +1,24 @@
+h5 Listing lenses
+p#notice = notice
+table.striped
+  thead
+    tr
+      th ID
+      th Maker
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @lenses.each do |lense|
+      tr
+        td = lense.id
+        td = lense.maker
+        td = lense.name
+        td = link_to 'Edit', edit_lense_path(lense)
+        td = link_to 'Destroy', lense, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Lens', new_lense_path

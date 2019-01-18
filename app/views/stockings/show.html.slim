@@ -1,0 +1,36 @@
+p#notice = notice
+
+p
+  strong Purchase date:
+  = @stocking.purchase_date
+p
+  strong Product type:
+  = @stocking.product_type
+p
+  strong Maker:
+  = @stocking.stocking_products.first&.product&.maker
+p
+  strong Purchase price:
+  = @stocking.purchase_price.to_s(:delimited)
+p
+  strong Shipping cost:
+  = @stocking.shipping_cost.to_s(:delimited)
+p
+  strong Use points:
+  = @stocking.use_points.to_s(:delimited)
+p
+  strong Purchasing cost:
+  = @stocking.purchasing_cost.to_s(:delimited)
+p
+  strong Payment type:
+  = @stocking.payment_type
+p
+  strong Purchase place:
+  = @stocking.purchase_place
+p
+  strong Remarks:
+  = @stocking.remarks
+
+=> link_to 'Edit', edit_stocking_path(@stocking)
+'|
+=< link_to 'Back', stockings_path

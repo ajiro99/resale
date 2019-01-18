@@ -1,0 +1,15 @@
+= form_for @lense do |f|
+  - if @lense.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@lense.errors.count, "error")} prohibited this lense from being saved:"
+      ul
+        - @lense.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :maker
+    = f.select :maker, Lense.maker.options
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit
