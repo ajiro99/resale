@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'bodies#index'
   resources :bodies, excpt: %i(show)
   resources :lenses, excpt: %i(show)
   resources :stockings, excpt: %i(show)
