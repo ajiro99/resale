@@ -1,22 +1,16 @@
 class LensesController < ApplicationController
-  before_action :set_lens, only: [:edit, :update, :destroy]
+  before_action :set_lens, only: %i(edit update destroy)
 
-  # GET /lenses
-  # GET /lenses.json
   def index
     @lenses = Lense.all
   end
 
-  # GET /lenses/new
   def new
     @lense = Lense.new
   end
 
-  # GET /lenses/1/edit
   def edit; end
 
-  # POST /lenses
-  # POST /lenses.json
   def create
     @lense = Lense.new(lense_params)
 
@@ -31,8 +25,6 @@ class LensesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lenses/1
-  # PATCH/PUT /lenses/1.json
   def update
     respond_to do |format|
       if @lense.update(lense_params)
@@ -45,8 +37,6 @@ class LensesController < ApplicationController
     end
   end
 
-  # DELETE /lenses/1
-  # DELETE /lenses/1.json
   def destroy
     @lense.destroy
     respond_to do |format|

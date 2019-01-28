@@ -1,70 +1,69 @@
 h5 売上一覧
 
-.grid-container
-  = render 'search_form'
+= render 'search_form'
 
-  .right-align
-    span
-      = link_to 'New Sale', new_sale_path, class: 'waves-effect waves-light btn white-text'
+.right-align
+  span
+    = link_to 'New Sale', new_sale_path, class: 'waves-effect waves-light btn white-text'
 
-  table.striped
-    thead
-      / tr
-        th = sort_link(@q, :sales_date)
-        th = sort_link(@q, :product_type)
-        th = sort_link(@q, :maker)
-        th = sort_link(@q, :product_name)
-        th = sort_link(@q, :stocking_price)
-        th = sort_link(@q, :bonus_price)
-        th = sort_link(@q, :cost)
-        th = sort_link(@q, :selling_price)
-        th = sort_link(@q, :fee)
-        th = sort_link(@q, :shipping_cost)
-        th = sort_link(@q, :sales)
-        th = sort_link(@q, :profit)
-        th = sort_link(@q, :profit_rate)
-        th = sort_link(@q, :status)
-        th = sort_link(@q, :remarks)
-        th
-        th
+table.striped
+  thead
+    / tr
+      th = sort_link(@q, :sales_date)
+      th = sort_link(@q, :product_type)
+      th = sort_link(@q, :maker)
+      th = sort_link(@q, :product_name)
+      th = sort_link(@q, :stocking_price)
+      th = sort_link(@q, :bonus_price)
+      th = sort_link(@q, :cost)
+      th = sort_link(@q, :selling_price)
+      th = sort_link(@q, :fee)
+      th = sort_link(@q, :shipping_cost)
+      th = sort_link(@q, :sales)
+      th = sort_link(@q, :profit)
+      th = sort_link(@q, :profit_rate)
+      th = sort_link(@q, :status)
+      th = sort_link(@q, :remarks)
+      th
+      th
 
-    tbody
+  tbody
+    tr
+      td
+      td
+      td
+      td
+      td.right-align = @sales.sum(:stocking_price).to_s(:delimited)
+      td.right-align = @sales.sum(:bonus_price).to_s(:delimited)
+      td.right-align.blue-text = @sales.sum(:cost).to_s(:delimited)
+      td.right-align = @sales.sum(:selling_price).to_s(:delimited)
+      td.right-align = @sales.sum(:fee).to_s(:delimited)
+      td.right-align = @sales.sum(:shipping_cost).to_s(:delimited)
+      td.right-align.red-text = @sales.sum(:profit).to_s(:delimited)
+      td.right-align.red-text = "#{@sales.average(:profit_rate)&.round(2)&.to_s(:delimited)}%"
+      td.right-align = "#{@sales.size.to_s(:delimited)}個"
+      td
+      td
+      td
+    - @sales.each do |sale|
       tr
-        td
-        td
-        td
-        td
-        td.right-align = @sales.sum(:stocking_price).to_s(:delimited)
-        td.right-align = @sales.sum(:bonus_price).to_s(:delimited)
-        td.right-align.blue-text = @sales.sum(:cost).to_s(:delimited)
-        td.right-align = @sales.sum(:selling_price).to_s(:delimited)
-        td.right-align = @sales.sum(:fee).to_s(:delimited)
-        td.right-align = @sales.sum(:shipping_cost).to_s(:delimited)
-        td.right-align.red-text = @sales.sum(:profit).to_s(:delimited)
-        td.right-align.red-text = "#{@sales.average(:profit_rate)&.round(2)&.to_s(:delimited)}%"
-        td.right-align = "#{@sales.size.to_s(:delimited)}個"
-        td
-        td
-        td
-      - @sales.each do |sale|
-        tr
-          td = sale.sales_date
-          td = sale.product_type
-          td = sale.maker
-          td = sale.product_name
-          td.right-align = sale.stocking_price.to_s(:delimited)
-          td.right-align = sale.bonus_price.to_s(:delimited)
-          td.right-align.blue-text = sale.cost.to_s(:delimited)
-          td.right-align = sale.selling_price.to_s(:delimited)
-          td.right-align = sale.fee.to_s(:delimited)
-          td.right-align = sale.shipping_cost.to_s(:delimited)
-          td.right-align.blue-text = sale.sales.to_s(:delimited)
-          td.right-align.red-text = sale.profit.to_s(:delimited)
-          td.right-align.red-text = sale.profit_rate.to_s(:delimited)
-          td = sale.remarks
-          td = link_to 'Edit', edit_sale_path(sale)
-          td = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete
+        td = sale.sales_date
+        td = sale.product_type
+        td = sale.maker
+        td = sale.product_name
+        td.right-align = sale.stocking_price.to_s(:delimited)
+        td.right-align = sale.bonus_price.to_s(:delimited)
+        td.right-align.blue-text = sale.cost.to_s(:delimited)
+        td.right-align = sale.selling_price.to_s(:delimited)
+        td.right-align = sale.fee.to_s(:delimited)
+        td.right-align = sale.shipping_cost.to_s(:delimited)
+        td.right-align.blue-text = sale.sales.to_s(:delimited)
+        td.right-align.red-text = sale.profit.to_s(:delimited)
+        td.right-align.red-text = sale.profit_rate.to_s(:delimited)
+        td = sale.remarks
+        td = link_to 'Edit', edit_sale_path(sale)
+        td = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete
 
-  br
+br
 
-  = link_to 'New Sale', new_sale_path, class: 'waves-effect waves-light btn white-text'
+= link_to 'New Sale', new_sale_path, class: 'waves-effect waves-light btn white-text'

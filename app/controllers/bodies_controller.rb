@@ -1,22 +1,16 @@
 class BodiesController < ApplicationController
-  before_action :set_body, only: [:edit, :update, :destroy]
+  before_action :set_body, only: %i(edit update destroy)
 
-  # GET /bodies
-  # GET /bodies.json
   def index
     @bodies = Body.all
   end
 
-  # GET /bodies/new
   def new
     @body = Body.new
   end
 
-  # GET /bodies/1/edit
   def edit; end
 
-  # POST /bodies
-  # POST /bodies.json
   def create
     @body = Body.new(body_params)
 
@@ -31,8 +25,6 @@ class BodiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bodies/1
-  # PATCH/PUT /bodies/1.json
   def update
     respond_to do |format|
       if @body.update(body_params)
@@ -45,8 +37,6 @@ class BodiesController < ApplicationController
     end
   end
 
-  # DELETE /bodies/1
-  # DELETE /bodies/1.json
   def destroy
     @body.destroy
     respond_to do |format|
