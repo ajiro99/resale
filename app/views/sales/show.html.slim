@@ -1,0 +1,42 @@
+p#notice = notice
+
+p
+  strong Sales date:
+  = @sale.sales_date
+p
+  strong Product type:
+  = @sale.product_type
+p
+  strong Stocking price:
+  = @sale.stocking_price
+p
+  strong Bonus price:
+  = @sale.bonus_price
+p
+  strong Cost:
+  = @sale.cost
+p
+  strong Selling price:
+  = @sale.selling_price
+p
+  strong Fee:
+  = @sale.fee
+p
+  strong Shipping cost:
+  = @sale.shipping_cost
+p
+  strong Profit:
+  = @sale.profit
+p
+  strong Profit rate:
+  = @sale.profit_rate
+p
+  strong Status:
+  = @sale.status
+p
+  strong Remarks:
+  = @sale.remarks
+
+=> link_to 'Edit', edit_sale_path(@sale)
+'|
+=< link_to 'Back', sales_path

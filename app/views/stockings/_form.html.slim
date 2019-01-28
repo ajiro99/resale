@@ -52,7 +52,8 @@
         = stocking_products_form.number_field :estimated_price
       .cell.medium-2
         = stocking_products_form.label :stock
-        = stocking_products_form.select :stock, StockingProduct.stock.options, include_blank: true
+        - if stocking_products_form.object&.sale&.present?
+          = '在庫なし'
 
   .grid-x.grid-margin-x
     .cell.medium-6

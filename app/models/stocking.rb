@@ -1,5 +1,5 @@
 class Stocking < ApplicationRecord
-  has_many :stocking_products
+  has_many :stocking_products, dependent: :destroy
   accepts_nested_attributes_for :stocking_products, allow_destroy: true, reject_if: :all_blank
 
   extend Enumerize

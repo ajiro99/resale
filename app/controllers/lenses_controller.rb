@@ -13,8 +13,7 @@ class LensesController < ApplicationController
   end
 
   # GET /lenses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /lenses
   # POST /lenses.json
@@ -57,13 +56,12 @@ class LensesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lens
-      @lense = Lense.find(params[:id])
-    end
+  
+  def set_lens
+    @lense = Lense.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lense_params
-      params.require(:lense).permit(:type, :maker, :name, :color)
-    end
+  def lense_params
+    params.require(:lense).permit(:type, :maker, :name)
+  end
 end

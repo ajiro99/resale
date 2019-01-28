@@ -24,7 +24,6 @@ table.striped
       th Remarks
       th
       th
-      th
 
   tbody
     - @stockings.each do |stocking|
@@ -40,7 +39,6 @@ table.striped
         td = stocking.payment_type
         td = stocking.purchase_place
         td = stocking.remarks
-        td = link_to 'Show', stocking
         td = link_to 'Edit', edit_stocking_path(stocking)
         td = link_to 'Destroy', stocking, data: { confirm: 'Are you sure?' }, method: :delete
 

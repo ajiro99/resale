@@ -1,0 +1,13 @@
+/ = search_form_for(@q, url:sales_path) do |f|
+  .row
+    .col.m2
+      = f.label Sale.human_attribute_name(:sales_date_from)
+      = f.date_field :sales_date_gteq
+    .col.m2
+      = f.label Sale.human_attribute_name(:sales_date_to)
+      = f.date_field :sales_date_lteq
+    .col.m2
+      = f.label Sale.human_attribute_name(:product_type)
+      = f.select :product_type_eq, Sale.product_type.options, :include_blank => true
+  = link_to 'クリア', request.path, class: 'btn grey white-text'
+  = f.submit '検索', class: 'waves-effect waves-light btn white-text orange'

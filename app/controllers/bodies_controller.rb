@@ -13,8 +13,7 @@ class BodiesController < ApplicationController
   end
 
   # GET /bodies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bodies
   # POST /bodies.json
@@ -57,13 +56,12 @@ class BodiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_body
-      @body = Body.find(params[:id])
-    end
+  
+  def set_body
+    @body = Body.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def body_params
-      params.require(:body).permit(:type, :maker, :name, :color)
-    end
+  def body_params
+    params.require(:body).permit(:type, :maker, :name)
+  end
 end

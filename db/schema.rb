@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_123510) do
+ActiveRecord::Schema.define(version: 2018_12_18_124256) do
 
   create_table "products", force: :cascade do |t|
     t.string "type"
@@ -32,7 +32,8 @@ ActiveRecord::Schema.define(version: 2018_12_17_123510) do
     t.integer "sales"
     t.integer "profit"
     t.decimal "profit_rate", precision: 5, scale: 2
-    t.integer "status"
+    t.integer "account"
+    t.integer "sales_channel"
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,12 +42,13 @@ ActiveRecord::Schema.define(version: 2018_12_17_123510) do
   create_table "stocking_products", force: :cascade do |t|
     t.integer "stocking_id"
     t.integer "product_id"
+    t.integer "sale_id"
     t.integer "estimated_price"
     t.integer "color"
-    t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_stocking_products_on_product_id"
+    t.index ["sale_id"], name: "index_stocking_products_on_sale_id"
     t.index ["stocking_id"], name: "index_stocking_products_on_stocking_id"
   end
 

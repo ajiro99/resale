@@ -1,0 +1,74 @@
+= form_for @sale do |f|
+  - if @sale.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@sale.errors.count, "error")} prohibited this sale from being saved:"
+      ul
+        - @sale.errors.full_messages.each do |message|
+          li = message
+
+  .grid-x.grid-margin-x
+    .cell.medium-3
+      = f.label :sales_date
+      = f.date_field :sales_date
+    .cell.medium-3
+      = f.label :product_type
+      = f.select :product_type, Sale.product_type.options
+
+  .grid-x.grid-margin-x
+    .cell.medium-12
+      - if controller.action_name == 'new'
+        = label_tag :body
+        = collection_select(:sale, :target_body, StockingProduct.in_stock.body, :id, :product_name, include_blank: true)
+        = label_tag :lense
+        = collection_select(:sale, :target_lense_1, StockingProduct.in_stock.lense, :id, :product_name, include_blank: true)
+        = label_tag :lense
+        = collection_select(:sale, :target_lense_2, StockingProduct.in_stock.lense, :id, :product_name, include_blank: true)
+      - else
+        = label_tag :body
+        = collection_select(:sale, :target_body, StockingProduct.body, :id, :product_name, include_blank: true)
+        = label_tag :lense
+        = collection_select(:sale, :target_lense_1, StockingProduct.lense, :id, :product_name, include_blank: true)
+        = label_tag :lense
+        = collection_select(:sale, :target_lense_2, StockingProduct.lense, :id, :product_name, include_blank: true)
+
+  .grid-x.grid-margin-x
+    .cell.medium-3
+      = f.label :stocking_price
+      = f.number_field :stocking_price
+    .cell.medium-3
+      = f.label :bonus_price
+      = f.number_field :bonus_price
+    .cell.medium-3
+      = f.label :cost
+      = f.number_field :cost
+  .grid-x.grid-margin-x
+    .cell.medium-3
+      = f.label :selling_price
+      = f.number_field :selling_price
+    .cell.medium-3
+      = f.label :fee
+      = f.number_field :fee
+    .cell.medium-3
+      = f.label :shipping_cost
+      = f.number_field :shipping_cost
+    .cell.medium-3
+      = f.label :sales
+      = f.number_field :sales
+    .cell.medium-3
+      = f.label :profit
+      = f.number_field :profit
+    .cell.medium-3
+      = f.label :profit_rate
+      = f.text_field :profit_rate
+    .cell.medium-3
+      = f.label :sales_channel
+      = f.select :sales_channel, Sale.sales_channel.options
+    .cell.medium-3
+      -# TODO: メルカリのみ
+      = f.label :account
+      = f.select :account, Sale.account.options
+  .grid-x.grid-margin-x
+    .cell.medium-4
+      = f.label :remarks
+      = f.text_area :remarks
+  .actions = f.submit
