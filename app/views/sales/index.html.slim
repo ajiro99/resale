@@ -61,8 +61,7 @@ table.striped
         td.right-align.red-text = sale.profit.to_s(:delimited)
         td.right-align.red-text = sale.profit_rate.to_s(:delimited)
         td = sale.remarks
-        td = link_to 'Edit', edit_sale_path(sale)
-        td = link_to 'Destroy', sale, data: { confirm: 'Are you sure?' }, method: :delete
+        = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_sale_path(sale), delete_path: sale}
 
 br
 

@@ -16,8 +16,7 @@ table.striped
         td = body.id
         td = body.maker
         td = body.name
-        td = link_to 'Edit', edit_body_path(body)
-        td = link_to 'Destroy', body, data: { confirm: 'Are you sure?' }, method: :delete
+        = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_body_path(body), delete_path: body}
 
 br
 

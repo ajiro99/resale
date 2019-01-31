@@ -50,8 +50,7 @@ table.striped
         td = stocking.payment_type
         td = stocking.purchase_place
         td = stocking.remarks
-        td = link_to 'Edit', edit_stocking_path(stocking)
-        td = link_to 'Destroy', stocking, data: { confirm: 'Are you sure?' }, method: :delete
+        = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_stocking_path(stocking), delete_path: stocking}
 
 br
 

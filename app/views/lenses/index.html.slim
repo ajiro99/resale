@@ -16,9 +16,7 @@ table.striped
         td = lense.id
         td = lense.maker
         td = lense.name
-        td = link_to 'Edit', edit_lense_path(lense)
-        td = link_to 'Destroy', lense, data: { confirm: 'Are you sure?' }, method: :delete
-
+        = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_lense_path(lense), delete_path: lense}
 br
 
 = link_to 'New Lens', new_lense_path
