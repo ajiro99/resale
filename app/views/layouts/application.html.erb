@@ -16,10 +16,18 @@
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
           <li class="menu-text"><%= link_to 'Camera Resale', root_path %></li>
-          <li><%= link_to 'ボディ', bodies_path %></li>
-          <li><%= link_to 'レンズ', lenses_path %></li>
-          <li><%= link_to '仕入れ', stockings_path %></li>
-          <li><%= link_to '売り上げ', sales_path   %></li>
+          <%= link_to bodies_path do %>
+            <li class="fi-camera">ボディ</li>
+          <% end %>
+          <%= link_to lenses_path do %>
+            <li class="fi-lightbulb">レンズ</li>
+          <% end %>
+          <%= link_to stockings_path do %>
+            <li class="fi-results">仕入</li>
+          <% end %>
+          <%= link_to sales_path do %>
+            <li class="fi-yen">売上</li>
+          <% end %>
         </ul>
       </div>
     </div>

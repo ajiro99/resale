@@ -4,7 +4,7 @@ class CreateStockingProducts < ActiveRecord::Migration[5.2]
       t.references :stocking, foreign_key: true
       t.references :product, foreign_key: true
       t.references :sale, foreign_key: true
-      t.integer :estimated_price
+      t.integer :estimated_price, default: 0
       t.integer :color
 
       t.timestamps

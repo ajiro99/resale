@@ -4,9 +4,9 @@ class CreateStockings < ActiveRecord::Migration[5.2]
       t.date :purchase_date
       t.integer :product_type
       t.integer :purchase_price
-      t.integer :shipping_cost
-      t.integer :use_points
-      t.integer :purchasing_cost
+      t.integer :shipping_cost, default: 0
+      t.integer :use_points, default: 0
+      t.integer :purchasing_cost, default: 0
       t.integer :payment_type
       t.integer :purchase_place
       t.string :remarks

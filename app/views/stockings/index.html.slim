@@ -1,9 +1,5 @@
 h5 仕入一覧
-span
-  b 利用ポイント合計：
-  = Stocking.sum(:use_points).to_s(:delimited)
-  b 仕入合計：
-  = Stocking.sum(:purchasing_cost).to_s(:delimited)
+
 .right-align
   span
     = link_to 'New Stocking', new_stocking_path, class: 'waves-effect waves-light btn white-text'
@@ -26,6 +22,21 @@ table.striped
       th
 
   tbody
+    tr
+      td
+      td
+      td
+      td 合計
+      td.right-align = Stocking.total_purchase_price
+      td.right-align = Stocking.total_shipping_cost
+      td.right-align = Stocking.total_use_point
+      td.right-align.red-text = Stocking.purchasing_cost
+      td
+      td
+      td
+      td
+      td
+
     - @stockings.each do |stocking|
       tr
         td = stocking.purchase_date

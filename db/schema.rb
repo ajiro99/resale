@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(version: 2018_12_18_124256) do
   create_table "sales", force: :cascade do |t|
     t.date "sales_date"
     t.integer "product_type"
-    t.integer "stocking_price"
-    t.integer "bonus_price"
-    t.integer "cost"
+    t.integer "stocking_price", default: 0
+    t.integer "bonus_price", default: 0
+    t.integer "cost", default: 0
     t.integer "selling_price"
-    t.integer "fee"
-    t.integer "shipping_cost"
-    t.integer "sales"
-    t.integer "profit"
+    t.integer "fee", default: 0
+    t.integer "shipping_cost", default: 0
+    t.integer "sales", default: 0
+    t.integer "profit", default: 0
     t.decimal "profit_rate", precision: 5, scale: 2
     t.integer "account"
     t.integer "sales_channel"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2018_12_18_124256) do
     t.integer "stocking_id"
     t.integer "product_id"
     t.integer "sale_id"
-    t.integer "estimated_price"
+    t.integer "estimated_price", default: 0
     t.integer "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 2018_12_18_124256) do
     t.date "purchase_date"
     t.integer "product_type"
     t.integer "purchase_price"
-    t.integer "shipping_cost"
-    t.integer "use_points"
-    t.integer "purchasing_cost"
+    t.integer "shipping_cost", default: 0
+    t.integer "use_points", default: 0
+    t.integer "purchasing_cost", default: 0
     t.integer "payment_type"
     t.integer "purchase_place"
     t.string "remarks"

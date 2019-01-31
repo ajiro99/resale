@@ -7,11 +7,19 @@ class Stocking < ApplicationRecord
   enumerize :payment_type, in: { Yahoo: 1, P_One: 2, Amex: 3, 現金:0 }, scope: true
   enumerize :purchase_place, in: { ヤフオク: 1, メルカリ: 2, キタムラ: 20, ハードオフ:21, アキバU_shop:22, ソフマップ:23 }, scope: true
 
-  def maker
-    stocking_products.first&.product&.maker
+  def self.total_purchase_price
+    sum(:purchase_price).to_s(:delimited)
   end
 
-  def product_name
-    stocking_products.map { |stocking_product| stocking_product&.product&.name}.join(' / ')
+  def self.total_shipping_cost
+    sum(:shipping_cost).to_s(:delimited)
+  end
+
+  def self.total_use_point
+    sum(:use_points).to_s(:delimited)
+  end
+
+  def self.purchasing_cost
+    sum(:purchasing_cost).to_s(:delimited)
   end
 end

@@ -2,7 +2,7 @@ class StockingsController < ApplicationController
   before_action :set_stocking, only: %i(edit update destroy)
 
   def index
-    @stockings = Stocking.all.order(:purchase_date)
+    @stockings = StockingDecorator.decorate_collection(Stocking.all.order(:purchase_date))
   end
 
   def new
@@ -12,8 +12,6 @@ class StockingsController < ApplicationController
 
   def edit
     @stocking = Stocking.find(params[:id])
-    t = 3 - @stocking.stocking_products.size.to_i
-    t.times { @stocking.stocking_products.build }
   end
 
   def create
@@ -31,12 +29,6 @@ class StockingsController < ApplicationController
   def update
     respond_to do |format|
       if @stocking.update(update_stocking_params)
-        # TODO: ajaxで削除できるように今後修正する
-
-        @stocking.stocking_products.map do |stocking_product|
-          stocking_product.destroy if stocking_product.product_id.blank?
-        end
-
         format.html { redirect_to stockings_path, notice: 'Stocking was successfully updated.' }
       else
         format.html { render :edit }

@@ -35,7 +35,7 @@
 
   = f.fields_for :stocking_products do |stocking_products_form|
     .grid-x.grid-margin-x
-      - if stocking_products_form.index == 0 && stocking_products_form.object&.product&.type != "Lense"
+      - if stocking_products_form.index == 0
         .cell.medium-4
           = stocking_products_form.label :body
           = stocking_products_form.collection_select :product_id, Body.all.order(:maker), :id, :name, include_blank: true
