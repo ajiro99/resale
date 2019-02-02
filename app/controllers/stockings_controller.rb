@@ -50,7 +50,7 @@ class StockingsController < ApplicationController
   end
 
   def stocking_params
-    params.require(:stocking).permit(
+    params.require(:stockings).permit(
       :purchase_date, :product_type, :purchase_price, :shipping_cost,
       :use_points, :purchasing_cost, :payment_type, :purchase_place, :remarks,
       stocking_products_attributes:
@@ -59,7 +59,7 @@ class StockingsController < ApplicationController
   end
 
   def update_stocking_params
-    params.require(:stocking).permit(
+    params.require(:stockings).permit(
       :purchase_date, :product_type, :purchase_price, :shipping_cost,
       :use_points, :purchasing_cost, :payment_type, :purchase_place, :remarks,
       stocking_products_attributes:

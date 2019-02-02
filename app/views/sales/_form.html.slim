@@ -17,18 +17,18 @@
   .grid-x.grid-margin-x
     .cell.medium-12
       - if controller.action_name == 'new'
-        = label_tag :body
+        = label_tag 'ボディ'
         = collection_select(:sale, :target_body, StockingProduct.in_stock.body, :id, :product_name, include_blank: true)
-        = label_tag :lense
+        = label_tag 'レンズ'
         = collection_select(:sale, :target_lense_1, StockingProduct.in_stock.lense, :id, :product_name, include_blank: true)
-        = label_tag :lense
+        = label_tag 'レンズ'
         = collection_select(:sale, :target_lense_2, StockingProduct.in_stock.lense, :id, :product_name, include_blank: true)
       - else
-        = label_tag :body
+        = label_tag 'ボディ'
         = collection_select(:sale, :target_body, StockingProduct.body, :id, :product_name, include_blank: true)
-        = label_tag :lense
+        = label_tag 'レンズ'
         = collection_select(:sale, :target_lense_1, StockingProduct.lense, :id, :product_name, include_blank: true)
-        = label_tag :lense
+        = label_tag 'レンズ'
         = collection_select(:sale, :target_lense_2, StockingProduct.lense, :id, :product_name, include_blank: true)
 
   .grid-x.grid-margin-x
