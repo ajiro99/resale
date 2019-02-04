@@ -2,7 +2,7 @@ h5 仕入一覧
 
 .right-align
   span
-    = link_to 'New Stocking', new_stocking_path, class: 'waves-effect waves-light btn white-text'
+    = link_to 'New Stocking', new_stocking_path, class: 'button small'
 
 table.striped
   thead
@@ -27,10 +27,10 @@ table.striped
       td
       td
       td 合計
-      td.right-align = Stocking.total_purchase_price
-      td.right-align = Stocking.total_shipping_cost
-      td.right-align = Stocking.total_use_point
-      td.right-align.red-text = Stocking.purchasing_cost
+      td.text-right = Stocking.total_purchase_price
+      td.text-right = Stocking.total_shipping_cost
+      td.text-right = Stocking.total_use_point
+      td.text-right = Stocking.purchasing_cost
       td
       td
       td
@@ -39,19 +39,18 @@ table.striped
 
     - @stockings.each do |stocking|
       tr
-        td = stocking.purchase_date
+        td = date_text(stocking.purchase_date)
         td = stocking.product_type
         td = stocking.maker
-        td = stocking.product_name
-        td.right-align = stocking.purchase_price.to_s(:delimited)
-        td.right-align = stocking.shipping_cost.to_s(:delimited)
-        td.right-align = stocking.use_points.to_s(:delimited)
-        td.right-align.red-text = stocking.purchasing_cost.to_s(:delimited)
+        td == stocking.product_name
+        td.text-right = stocking.purchase_price.to_s(:delimited)
+        td.text-right = stocking.shipping_cost.to_s(:delimited)
+        td.text-right = stocking.use_points.to_s(:delimited)
+        td.text-right = stocking.purchasing_cost.to_s(:delimited)
         td = stocking.payment_type
         td = stocking.purchase_place
         td = stocking.remarks
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_stocking_path(stocking), delete_path: stocking}
 
 br
-
-= link_to 'New Stocking', new_stocking_path
+= link_to 'New Stocking', new_stocking_path, class: 'button small'

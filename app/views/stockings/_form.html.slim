@@ -52,11 +52,10 @@
         = stocking_products_form.number_field :estimated_price
       .cell.medium-2
         = stocking_products_form.label :stock
-        - if stocking_products_form.object&.sale&.present?
-          = '在庫なし'
+        = stocking_products_form.object&.sale&.present? ? '×' : '◯'
 
   .grid-x.grid-margin-x
     .cell.medium-6
       = f.label :remarks
       = f.text_area :remarks
-  .actions = f.submit
+  .actions = f.submit class: 'button success'

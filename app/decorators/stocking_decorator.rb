@@ -8,7 +8,7 @@ class StockingDecorator < Draper::Decorator
   def product_name
     stocking_products.map do |stocking_product|
       stocking_product&.product&.name if stocking_product.product_id.present?
-    end.compact.join(' / ')
+    end.compact.join('<br>')
   end
 
   def total_use_points

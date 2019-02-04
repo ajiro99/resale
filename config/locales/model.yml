@@ -21,7 +21,7 @@ ja:
         lense: レンズ
         color: 色
         estimated_price: 原価
-        stock: 在庫
+        stock: 在庫有無
 
       sale:
         sales_date: 販売日時

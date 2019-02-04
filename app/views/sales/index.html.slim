@@ -4,7 +4,7 @@ h5 売上一覧
 
 .right-align
   span
-    = link_to 'New Sale', new_sale_path, class: 'waves-effect waves-light btn white-text'
+    = link_to 'New Sale', new_sale_path, class: 'button small'
 
 table.striped
   thead
@@ -33,36 +33,36 @@ table.striped
       td
       td
       td
-      td.right-align = @sales.sum(:stocking_price).to_s(:delimited)
-      td.right-align = @sales.sum(:bonus_price).to_s(:delimited)
-      td.right-align.blue-text = @sales.sum(:cost).to_s(:delimited)
-      td.right-align = @sales.sum(:selling_price).to_s(:delimited)
-      td.right-align = @sales.sum(:fee).to_s(:delimited)
-      td.right-align = @sales.sum(:shipping_cost).to_s(:delimited)
-      td.right-align.red-text = @sales.sum(:profit).to_s(:delimited)
-      td.right-align.red-text = "#{@sales.average(:profit_rate)&.round(2)&.to_s(:delimited)}%"
-      td.right-align = "#{@sales.size.to_s(:delimited)}個"
+      td.text-right = @sales.sum(:stocking_price).to_s(:delimited)
+      td.text-right = @sales.sum(:bonus_price).to_s(:delimited)
+      td.text-right = @sales.sum(:cost).to_s(:delimited)
+      td.text-right = @sales.sum(:selling_price).to_s(:delimited)
+      td.text-right = @sales.sum(:fee).to_s(:delimited)
+      td.text-right = @sales.sum(:shipping_cost).to_s(:delimited)
+      td.text-right = @sales.sum(:profit).to_s(:delimited)
+      td.text-right = "#{@sales.average(:profit_rate)&.round(2)&.to_s(:delimited)}%"
+      td.text-right = "#{@sales.size.to_s(:delimited)}個"
       td
       td
       td
     - @sales.each do |sale|
       tr
-        td = sale.sales_date
+        td = date_text(sale.sales_date)
         td = sale.product_type
         td = sale.maker
         td = sale.product_name
-        td.right-align = sale.stocking_price.to_s(:delimited)
-        td.right-align = sale.bonus_price.to_s(:delimited)
-        td.right-align.blue-text = sale.cost.to_s(:delimited)
-        td.right-align = sale.selling_price.to_s(:delimited)
-        td.right-align = sale.fee.to_s(:delimited)
-        td.right-align = sale.shipping_cost.to_s(:delimited)
-        td.right-align.blue-text = sale.sales.to_s(:delimited)
-        td.right-align.red-text = sale.profit.to_s(:delimited)
-        td.right-align.red-text = sale.profit_rate.to_s(:delimited)
+        td.text-right = sale.stocking_price.to_s(:delimited)
+        td.text-right = sale.bonus_price.to_s(:delimited)
+        td.text-right = sale.cost.to_s(:delimited)
+        td.text-right = sale.selling_price.to_s(:delimited)
+        td.text-right = sale.fee.to_s(:delimited)
+        td.text-right = sale.shipping_cost.to_s(:delimited)
+        td.text-right = sale.sales.to_s(:delimited)
+        td.text-right = sale.profit.to_s(:delimited)
+        td.text-right = sale.profit_rate.to_s(:delimited)
         td = sale.remarks
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_sale_path(sale), delete_path: sale}
 
 br
 
-= link_to 'New Sale', new_sale_path, class: 'waves-effect waves-light btn white-text'
+= link_to 'New Sale', new_sale_path, class: 'button small'
