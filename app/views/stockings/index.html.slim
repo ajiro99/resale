@@ -1,5 +1,12 @@
 h5 仕入一覧
 
+- if @stocking.present? && @stocking.errors.any?
+  #error_explanation
+    h4 = "#{pluralize(@stocking.errors.count, "error")} prohibited this stocking from being saved:"
+    ul
+      - @stocking.errors.full_messages.each do |message|
+        li = message
+
 .right-align
   span
     = link_to 'New Stocking', new_stocking_path, class: 'button small'

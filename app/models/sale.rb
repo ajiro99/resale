@@ -7,9 +7,9 @@ class Sale < ApplicationRecord
   #                               allow_destroy: true, reject_if: :all_blank
 
   extend Enumerize
-  enumerize :product_type, in: { レンズキット: 1, ボディ: 2, レンズ: 3, その他:0 }, scope: true
-  enumerize :sales_channel, in: { メルカリ: 1, ヤフオク: 2, その他:0 }, scope: true
-  enumerize :account, in: { メイン: 1, サブ: 2, その他:0 }, scope: true
+  enumerize :product_type, in: { レンズキット: 1, ボディ: 2, レンズ: 3, その他: 0 }, scope: true
+  enumerize :sales_channel, in: { メルカリ: 1, ヤフオク: 2, その他: 0 }, scope: true
+  enumerize :account, in: { メイン: 1, サブ: 2, その他: 0 }, scope: true
 
   def maker
     stocking_products&.first&.product&.maker

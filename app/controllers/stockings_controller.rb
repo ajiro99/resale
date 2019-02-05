@@ -1,18 +1,15 @@
 class StockingsController < ApplicationController
+  before_action :set_stockings, only: %i(index)
   before_action :set_stocking, only: %i(edit update destroy)
 
-  def index
-    @stockings = StockingDecorator.decorate_collection(Stocking.all.order(:purchase_date))
-  end
+  def index; end
 
   def new
     @stocking = Stocking.new
     3.times { @stocking.stocking_products.build }
   end
 
-  def edit
-    @stocking = Stocking.find(params[:id])
-  end
+  def edit; end
 
   def create
     @stocking = Stocking.new(stocking_params)
@@ -37,13 +34,21 @@ class StockingsController < ApplicationController
   end
 
   def destroy
-    @stocking.destroy
     respond_to do |format|
-      format.html { redirect_to stockings_url, notice: 'Stocking was successfully destroyed.' }
+      if @stocking.destroy
+        format.html { redirect_to stockings_url, notice: 'Stocking was successfully destroyed.' }
+      else
+        set_stockings
+        format.html { render :index }
+      end
     end
   end
 
   private
+
+  def set_stockings
+    @stockings = StockingDecorator.decorate_collection(Stocking.all.order(:purchase_date))
+  end
 
   def set_stocking
     @stocking = Stocking.find(params[:id])

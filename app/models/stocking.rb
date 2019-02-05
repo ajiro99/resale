@@ -1,4 +1,6 @@
 class Stocking < ApplicationRecord
+  before_destroy :check_saled
+
   has_many :stocking_products, dependent: :destroy
   accepts_nested_attributes_for :stocking_products, allow_destroy: true, reject_if: :all_blank
 
@@ -21,5 +23,13 @@ class Stocking < ApplicationRecord
 
   def self.purchasing_cost
     sum(:purchasing_cost).to_s(:delimited)
+  end
+
+  private
+
+  def check_saled
+    return true if stocking_products.in_stock.size == 3
+    errors.add(:base, 'この商品は売却されている為、削除できません')
+    throw :abort
   end
 end
