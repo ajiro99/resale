@@ -33,14 +33,15 @@ table.striped
       td
       td
       td
-      td.text-right = @sales.sum(:stocking_price).to_s(:delimited)
-      td.text-right = @sales.sum(:bonus_price).to_s(:delimited)
-      td.text-right = @sales.sum(:cost).to_s(:delimited)
-      td.text-right = @sales.sum(:selling_price).to_s(:delimited)
-      td.text-right = @sales.sum(:fee).to_s(:delimited)
-      td.text-right = @sales.sum(:shipping_cost).to_s(:delimited)
-      td.text-right = @sales.sum(:profit).to_s(:delimited)
-      td.text-right = "#{@sales.average(:profit_rate)&.round(2)&.to_s(:delimited)}%"
+      td.text-right = Sale.total_stocking_price
+      td.text-right = Sale.total_bonus_price
+      td.text-right = Sale.total_cost
+      td.text-right = Sale.total_selling_price
+      td.text-right = Sale.total_fee
+      td.text-right = Sale.total_shipping_cost
+      td.text-right = Sale.total_sales
+      td.text-right = Sale.total_profit
+      td.text-right = Sale.total_profit_rate
       td.text-right = "#{@sales.size.to_s(:delimited)}個"
       td
       td
@@ -50,7 +51,7 @@ table.striped
         td = date_text(sale.sales_date)
         td = sale.product_type
         td = sale.maker
-        td = sale.product_name
+        td == sale.product_name
         td.text-right = sale.stocking_price.to_s(:delimited)
         td.text-right = sale.bonus_price.to_s(:delimited)
         td.text-right = sale.cost.to_s(:delimited)
@@ -59,7 +60,7 @@ table.striped
         td.text-right = sale.shipping_cost.to_s(:delimited)
         td.text-right = sale.sales.to_s(:delimited)
         td.text-right = sale.profit.to_s(:delimited)
-        td.text-right = sale.profit_rate.to_s(:delimited)
+        td.text-right = ActionController::Base.helpers.number_to_percentage(sale.profit_rate.to_s(:delimited), precision: 2)
         td = sale.remarks
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_sale_path(sale), delete_path: sale}
 
