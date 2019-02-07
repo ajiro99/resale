@@ -1,0 +1,25 @@
+= form_for @extra do |f|
+  - if @extra.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@extra.errors.count, "error")} prohibited this extra from being saved:"
+      ul
+        - @extra.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :price
+    = f.number_field :price
+  .field
+    = f.label :display
+    = f.radio_button :display, true, checked: f.object.display?
+    = f.label(:display, '表示', value: true)
+    = f.radio_button :display, false, checked: !f.object.display?
+    = f.label(:display, '非表示', value: false)
+  .field
+    = f.label :remarks
+    = f.text_area :remarks
+
+  .actions = f.submit

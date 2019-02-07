@@ -1,0 +1,25 @@
+h5 おまけ一覧
+p#notice = notice
+table.striped
+  thead
+    tr
+      th ID
+      th Maker
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @extras.each do |extra|
+      tr
+        td = extra.id
+        td = extra.name
+        td = extra.price
+        td = extra.display
+        td = extra.remarks
+        = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_extra_path(extra), delete_path: extra}
+
+br
+
+= link_to 'New Extra', new_extra_path
