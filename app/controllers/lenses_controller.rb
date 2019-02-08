@@ -14,35 +14,28 @@ class LensesController < ApplicationController
   def create
     @lense = Lense.new(lense_params)
 
-    respond_to do |format|
-      if @lense.save
-        format.html { redirect_to lenses_path, notice: 'Lense was successfully created.' }
-        format.json { render :show, status: :created, location: @lense }
-      else
-        format.html { render :new }
-        format.json { render json: @lense.errors, status: :unprocessable_entity }
-      end
+    if @lense.save
+      redirect_to lenses_path, notice: 'Lense was successfully created.'
+      render :show, status: :created, location: @lense
+    else
+      render :new
+      render json: @lense.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @lense.update(lense_params)
-        format.html { redirect_to lenses_path, notice: 'Lense was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lense }
-      else
-        format.html { render :edit }
-        format.json { render json: @lense.errors, status: :unprocessable_entity }
-      end
+    if @lense.update(lense_params)
+      redirect_to lenses_path, notice: 'Lense was successfully updated.'
+      render :show, status: :ok, location: @lense
+    else
+      render :edit
+      render json: @lense.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @lense.destroy
-    respond_to do |format|
-      format.html { redirect_to lenses_url, notice: 'Lense was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to lenses_url, notice: 'Lense was successfully destroyed.'
   end
 
   private

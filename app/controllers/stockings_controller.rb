@@ -14,33 +14,27 @@ class StockingsController < ApplicationController
   def create
     @stocking = Stocking.new(stocking_params)
 
-    respond_to do |format|
-      if @stocking.save
-        format.html { redirect_to stockings_path, notice: 'Stocking was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @stocking.save
+      redirect_to stockings_path, notice: 'Stocking was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @stocking.update(update_stocking_params)
-        format.html { redirect_to stockings_path, notice: 'Stocking was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @stocking.update(update_stocking_params)
+      redirect_to stockings_path, notice: 'Stocking was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
-    respond_to do |format|
-      if @stocking.destroy
-        format.html { redirect_to stockings_url, notice: 'Stocking was successfully destroyed.' }
-      else
-        set_stockings
-        format.html { render :index }
-      end
+    if @stocking.destroy
+      redirect_to stockings_url, notice: 'Stocking was successfully destroyed.'
+    else
+      set_stockings
+      render :index
     end
   end
 

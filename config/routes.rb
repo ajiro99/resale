@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'bodies#index'
+  root 'sales#index'
   resources :bodies, excpt: %i(show)
   resources :lenses, excpt: %i(show)
   resources :extras, excpt: %i(show)

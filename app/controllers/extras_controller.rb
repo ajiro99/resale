@@ -14,30 +14,24 @@ class ExtrasController < ApplicationController
   def create
     @extra = Extra.new(extra_params)
 
-    respond_to do |format|
-      if @extra.save
-        format.html { redirect_to extras_path, notice: 'Extra was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @extra.save
+      redirect_to extras_path, notice: 'Extra was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @extra.update(extra_params)
-        format.html { redirect_to extras_path, notice: 'Extra was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @extra.update(extra_params)
+      redirect_to extras_path, notice: 'Extra was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @extra.destroy
-    respond_to do |format|
-      format.html { redirect_to extras_path, notice: 'Extra was successfully destroyed.' }
-    end
+    redirect_to extras_path, notice: 'Extra was successfully destroyed.'
   end
 
   private
