@@ -27,6 +27,14 @@
       = label_tag 'レンズ'
       = collection_select(:sale, :target_lense_2, target_lenses_2, :id, :product_name, include_blank: true)
 
+
+  .grid-x.grid-margin-x
+    .cell.medium-12
+      = label_tag 'おまけ'
+      - Extra.all.each do |extra|
+        - check_flag = @sale.sale_extras.any? { |sale_extra| sale_extra.extra_id == extra.id }
+        = check_box_tag 'sale[sale_extras_attributes][][extra_id]', extra.id, check_flag
+        = label_tag extra.name
   .grid-x.grid-margin-x
     .cell.medium-3
       = f.label :stocking_price

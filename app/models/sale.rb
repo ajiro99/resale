@@ -5,6 +5,8 @@ class Sale < ApplicationRecord
   attr_accessor :target_lense_1
   attr_accessor :target_lense_2
   has_many :stocking_products
+  has_many :sale_extras
+  accepts_nested_attributes_for :sale_extras, allow_destroy: true, reject_if: :all_blank
 
   extend Enumerize
   enumerize :product_type, in: { レンズキット: 1, ボディ: 2, レンズ: 3, その他: 0 }, scope: true
