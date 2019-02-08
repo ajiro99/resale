@@ -105,4 +105,13 @@ $(function(){
   $(document).on('change', "#sale_profit", function (){
       $("#sale_profit_rate").val((parseInt($("#sale_profit").val()) / parseInt($("#sale_sales").val())) * 100);
   });
+
+  $(document).on('change', "[id^='sale_extra_id']", function (){
+      if ($(this).is(':checked')) {
+          $("#sale_bonus_price").val(parseInt($("#sale_bonus_price").val()) + parseInt($("#sale_extra_price_" + $(this).val()).val()));
+      } else {
+          $("#sale_bonus_price").val(parseInt($("#sale_bonus_price").val()) - parseInt($("#sale_extra_price_" + $(this).val()).val()));
+      }
+      $('#sale_stocking_price').trigger('keyup');
+  });
 });

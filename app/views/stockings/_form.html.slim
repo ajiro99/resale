@@ -50,9 +50,11 @@
       .cell.medium-2
         = stocking_products_form.label :estimated_price
         = stocking_products_form.number_field :estimated_price
-      .cell.medium-2
-        = stocking_products_form.label :stock
-        = stocking_products_form.object&.sale&.present? ? '×' : '◯'
+      - unless controller.action_name == 'new'
+        .cell.medium-2
+          = stocking_products_form.label :stock
+          - if stocking_products_form.object&.product&.present?
+            = stocking_products_form.object&.sale&.present? ? '×' : '◯'
 
   .grid-x.grid-margin-x
     .cell.medium-6
