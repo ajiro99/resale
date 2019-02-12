@@ -1,5 +1,7 @@
 h5 仕入一覧
 
+= render 'search_form'
+
 - if @stocking.present? && @stocking.errors.any?
   #error_explanation
     h4 = "#{pluralize(@stocking.errors.count, "error")} prohibited this stocking from being saved:"
@@ -12,50 +14,48 @@ h5 仕入一覧
     = link_to 'New Stocking', new_stocking_path, class: 'button small'
 
 table.striped
-  thead
-    tr
-      th = t '.purchase_date'
-      th = t '.product_type'
-      th = t '.maker'
-      th = t '.product_name'
-      th = t '.purchase_price'
-      th = t '.shipping_cost'
-      th = t '.use_points'
-      th = t '.purchasing_cost'
-      th = t '.payment_type'
-      th = t '.purchase_place'
-      th = t '.remarks'
-      th
-      th
-
   tbody
     tr
       td
       td
       td
-      td 合計
-      td.text-right = Stocking.total_purchase_price
-      td.text-right = Stocking.total_shipping_cost
-      td.text-right = Stocking.total_use_point
-      td.text-right = Stocking.purchasing_cost
+      td.text-right = "合計　#{@stockings_q.size.to_s(:delimited)}個"
+      td.text-right = @stockings_q.total_purchase_price
+      td.text-right = @stockings_q.total_shipping_cost
+      td.text-right = @stockings_q.total_use_point
+      td.text-right = @stockings_q.purchasing_cost
       td
       td
       td
       td
       td
+    tr
+      th = sort_link(@q, :purchase_date, default_order: :desc)
+      th = sort_link(@q, :product_type)
+      th = sort_link(@q, :maker, 'メーカー')
+      th = sort_link(@q, :product_name, '商品名')
+      th = sort_link(@q, :purchase_price, default_order: :desc)
+      th = sort_link(@q, :shipping_cost, default_order: :desc)
+      th = sort_link(@q, :use_points, default_order: :desc)
+      th = sort_link(@q, :purchasing_cost, default_order: :desc)
+      th = sort_link(@q, :payment_type, default_order: :desc)
+      th = sort_link(@q, :purchase_place, default_order: :desc)
+      th = sort_link(@q, :remarks)
+      th
+      th
 
     - @stockings.each do |stocking|
       tr
         td = date_text(stocking.purchase_date)
-        td = stocking.product_type
-        td = stocking.maker
+        td = stocking.product_type_text
+        td = stocking.maker.upcase
         td == stocking.product_name
         td.text-right = stocking.purchase_price.to_s(:delimited)
         td.text-right = stocking.shipping_cost.to_s(:delimited)
         td.text-right = stocking.use_points.to_s(:delimited)
         td.text-right = stocking.purchasing_cost.to_s(:delimited)
-        td = stocking.payment_type
-        td = stocking.purchase_place
+        td = stocking.payment_type_text
+        td = stocking.purchase_place_text
         td = stocking.remarks
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_stocking_path(stocking), delete_path: stocking}
 

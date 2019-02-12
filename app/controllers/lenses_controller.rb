@@ -16,20 +16,16 @@ class LensesController < ApplicationController
 
     if @lense.save
       redirect_to lenses_path, notice: 'Lense was successfully created.'
-      render :show, status: :created, location: @lense
     else
       render :new
-      render json: @lense.errors, status: :unprocessable_entity
     end
   end
 
   def update
     if @lense.update(lense_params)
       redirect_to lenses_path, notice: 'Lense was successfully updated.'
-      render :show, status: :ok, location: @lense
     else
       render :edit
-      render json: @lense.errors, status: :unprocessable_entity
     end
   end
 

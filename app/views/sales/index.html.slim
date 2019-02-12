@@ -4,53 +4,50 @@ h5 売上一覧
 
 .right-align
   span
-    = link_to 'New Sale', new_sale_path, class: 'button small'
+    = link_to '新規登録', new_sale_path, class: 'button'
 
-table.striped
-  thead
-    / tr
-      th = sort_link(@q, :sales_date)
-      th = sort_link(@q, :product_type)
-      th = sort_link(@q, :maker)
-      th = sort_link(@q, :product_name)
-      th = sort_link(@q, :stocking_price)
-      th = sort_link(@q, :bonus_price)
-      th = sort_link(@q, :cost)
-      th = sort_link(@q, :selling_price)
-      th = sort_link(@q, :fee)
-      th = sort_link(@q, :shipping_cost)
-      th = sort_link(@q, :sales)
-      th = sort_link(@q, :profit)
-      th = sort_link(@q, :profit_rate)
-      th = sort_link(@q, :status)
-      th = sort_link(@q, :remarks)
-      th
-      th
-
+table
   tbody
     tr
       td
       td
       td
-      td
-      td.text-right = Sale.total_stocking_price
-      td.text-right = Sale.total_bonus_price
-      td.text-right = Sale.total_cost
-      td.text-right = Sale.total_selling_price
-      td.text-right = Sale.total_fee
-      td.text-right = Sale.total_shipping_cost
-      td.text-right = Sale.total_sales
-      td.text-right = Sale.total_profit
-      td.text-right = Sale.total_profit_rate
-      td.text-right = "#{@sales.size.to_s(:delimited)}個"
-      td
+      td.text-right = "合計　#{@sales_q.size.to_s(:delimited)}個"
+      td.text-right = @sales_q.total_stocking_price
+      td.text-right = @sales_q.total_bonus_price
+      td.text-right = @sales_q.total_cost
+      td.text-right = @sales_q.total_selling_price
+      td.text-right = @sales_q.total_fee
+      td.text-right = @sales_q.total_shipping_cost
+      td.text-right = @sales_q.total_sales
+      td.text-right = @sales_q.total_profit
+      td.text-right = @sales_q.total_profit_rate
       td
       td
+
+    tr
+      th = sort_link(@q, :sales_date, default_order: :desc)
+      th = sort_link(@q, :product_type)
+      th = sort_link(@q, :stocking_products_product_maker, 'メーカー')
+      th = sort_link(@q, :stocking_products_product_name, '商品名')
+      th = sort_link(@q, :stocking_price, default_order: :desc)
+      th = sort_link(@q, :bonus_price, default_order: :desc)
+      th = sort_link(@q, :cost, default_order: :desc)
+      th = sort_link(@q, :selling_price, default_order: :desc)
+      th = sort_link(@q, :fee, default_order: :desc)
+      th = sort_link(@q, :shipping_cost, default_order: :desc)
+      th = sort_link(@q, :sales, default_order: :desc)
+      th = sort_link(@q, :profit, default_order: :desc)
+      th = sort_link(@q, :profit_rate, default_order: :desc)
+      th
+      th
+
+  tbody
     - @sales.each do |sale|
       tr
         td = date_text(sale.sales_date)
-        td = sale.product_type
-        td = sale.maker
+        td = sale.product_type_text
+        td = sale.maker.upcase
         td == sale.product_name
         td.text-right = sale.stocking_price.to_s(:delimited)
         td.text-right = sale.bonus_price.to_s(:delimited)
@@ -61,9 +58,8 @@ table.striped
         td.text-right = sale.sales.to_s(:delimited)
         td.text-right = sale.profit.to_s(:delimited)
         td.text-right = ActionController::Base.helpers.number_to_percentage(sale.profit_rate.to_s(:delimited), precision: 2)
-        td = sale.remarks
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_sale_path(sale), delete_path: sale}
 
 br
 
-= link_to 'New Sale', new_sale_path, class: 'button small'
+= link_to '新規登録', new_sale_path, class: 'button'

@@ -9,16 +9,16 @@
   .grid-x.grid-margin-x
     .cell.medium-3
       = f.label :sales_date
-      = f.date_field :sales_date
+      = f.date_field :sales_date, value: defalt_date
     .cell.medium-3
       = f.label :product_type
       = f.select :product_type, Sale.product_type.options
 
   .grid-x.grid-margin-x
     .cell.medium-12
-      - bodyies = controller.action_name == 'new' ? StockingProduct.in_stock.body : StockingProduct.edit_body(@sale.target_body)
-      - target_lenses_1 = controller.action_name == 'new' ? StockingProduct.in_stock.lense : StockingProduct.edit_lense1(@sale.target_lense_1)
-      - target_lenses_2 = controller.action_name == 'new' ? StockingProduct.in_stock.lense : StockingProduct.edit_lense2(@sale.target_lense_2)
+      - bodyies = new_action? ? StockingProduct.in_stock.body : StockingProduct.edit_body(@sale.target_body)
+      - target_lenses_1 = new_action? ? StockingProduct.in_stock.lense : StockingProduct.edit_lense1(@sale.target_lense_1)
+      - target_lenses_2 = new_action? ? StockingProduct.in_stock.lense : StockingProduct.edit_lense2(@sale.target_lense_2)
 
       = label_tag 'ボディ'
       = collection_select(:sale, :target_body, bodyies, :id, :product_name, include_blank: true)

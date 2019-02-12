@@ -2,9 +2,9 @@ class SalesController < ApplicationController
   before_action :set_sale, only: %i(edit update destroy)
 
   def index
-    @sales = SaleDecorator.decorate_collection(Sale.all.order(:sales_date))
-    # @q = Sale.ransack(params[:q])
-    # @sales = @q.result.order(:sales_date)
+    @q = Sale.ransack(params[:q])
+    @sales_q = @q.result.order(:sales_date)
+    @sales = SaleDecorator.decorate_collection(@sales_q)
   end
 
   def new
@@ -65,8 +65,12 @@ class SalesController < ApplicationController
   end
 
   def search
+    # @q = Sale.search(search_params)
+    # @sales = @q.result.order(:sales_date)
+
     @q = Sale.search(search_params)
-    @sales = @q.result.order(:sales_date)
+    @sales_q = @q.result.order(:sales_date)
+    @sales = SaleDecorator.decorate_collection(@sales_q)
   end
 
   private

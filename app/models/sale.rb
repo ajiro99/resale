@@ -9,9 +9,9 @@ class Sale < ApplicationRecord
   accepts_nested_attributes_for :sale_extras, allow_destroy: true, reject_if: :all_blank
 
   extend Enumerize
-  enumerize :product_type, in: { レンズキット: 1, ボディ: 2, レンズ: 3, その他: 0 }, scope: true
-  enumerize :sales_channel, in: { メルカリ: 1, ヤフオク: 2, その他: 0 }, scope: true
-  enumerize :account, in: { メイン: 1, サブ: 2, その他: 0 }, scope: true
+  enumerize :product_type, in: { lense_kit: 1, body: 2, lense: 3, w_lense_kit: 4, other: 0 }, scope: true
+  enumerize :sales_channel, in: { mercari: 1, yahoo_auctions: 2, other: 0 }, scope: true
+  enumerize :account, in: { main: 1, sub: 2, other: 0 }, scope: true
 
   def self.total_stocking_price
     sum(:stocking_price).to_s(:delimited)

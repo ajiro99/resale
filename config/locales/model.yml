@@ -10,11 +10,15 @@ ja:
         product_name: 商品名
         purchase_price: 販売価格
         shipping_cost: 送料
-        use_points: ポイント利用
+        use_points: ポイント
         purchasing_cost: 購入金額
         payment_type: 支払い方法
-        purchase_place: 購入ストア
+        purchase_place: 購入先
         remarks: 備考
+        stocking_date_from: 購入日時（From）
+        stocking_date_to: 購入日時（To）
+        stocking_products_product_maker: メーカー
+        stocking_products_product_name: 商品名
 
       stocking_product:
         body: ボディ
@@ -38,5 +42,51 @@ ja:
         account: アカウント
         sales_channel: 販路
         remarks: 備考
+        sales_date_from: 販売日時（From）
+        sales_date_to: 販売日時（To）
+        stocking_products_product_maker: メーカー
+        stocking_products_product_name: 商品名
 
+  enumerize:
+    stocking:
+      product_type:
+        lense_kit: レンズキット
+        body: ボディ
+        lense: レンズ
+        w_lense_kit: ダブルレンズキット
+        other: その他
+      payment_type:
+        yahoo: Yahooカード
+        p_one: P_one
+        amex: AMEX
+        cash: 現金
+      purchase_place:
+        yahoo_auctions: ヤフオク
+        mercari: メルカリ
+        kitamura: カメラのキタムラ
+        hard_off: ハードオフ
+        soff_map: ソフマップ
+        other: その他
 
+    sale:
+      product_type:
+        lense_kit: レンズキット
+        body: ボディ
+        lense: レンズ
+        w_lense_kit: ダブルレンズキット
+        other: その他
+      sales_channel:
+        mercari: メルカリ
+        yahoo_auctions: ヤフオク
+        other: その他
+      account:
+        main: メイン
+        sub: サブ
+        other: その他
+
+    product:
+      maker:
+        olympus: OLYMPUS
+        nicon: NICON
+        canon: CANON
+        sigma: SIGMA

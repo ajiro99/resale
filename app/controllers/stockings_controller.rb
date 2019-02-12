@@ -2,7 +2,11 @@ class StockingsController < ApplicationController
   before_action :set_stockings, only: %i(index)
   before_action :set_stocking, only: %i(edit update destroy)
 
-  def index; end
+  def index
+    @q = Stocking.ransack(params[:q])
+    @stockings_q = @q.result.order(:purchase_date)
+    @stockings = StockingDecorator.decorate_collection(@stockings_q)
+  end
 
   def new
     @stocking = Stocking.new

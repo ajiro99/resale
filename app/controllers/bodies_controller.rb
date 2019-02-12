@@ -16,20 +16,16 @@ class BodiesController < ApplicationController
 
     if @body.save
       redirect_to bodies_path, notice: 'Body was successfully created.'
-      render :show, status: :created, location: @body
     else
       render :new
-      render json: @body.errors, status: :unprocessable_entity
     end
   end
 
   def update
     if @body.update(body_params)
       redirect_to bodies_path, notice: 'Body was successfully updated.'
-      render :show, status: :ok, location: @body
     else
       render :edit
-      render json: @body.errors, status: :unprocessable_entity
     end
   end
 

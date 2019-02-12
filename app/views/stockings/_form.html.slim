@@ -9,7 +9,7 @@
   .grid-x.grid-margin-x
     .cell.medium-3
       = f.label :purchase_date
-      = f.date_field :purchase_date
+      = f.date_field :purchase_date, value: defalt_date
     .cell.medium-3
       = f.label :product_type
       = f.select :product_type, Stocking.product_type.options
@@ -50,7 +50,7 @@
       .cell.medium-2
         = stocking_products_form.label :estimated_price
         = stocking_products_form.number_field :estimated_price
-      - unless controller.action_name == 'new'
+      - unless new_action?
         .cell.medium-2
           = stocking_products_form.label :stock
           - if stocking_products_form.object&.product&.present?
