@@ -14,6 +14,7 @@ ja:
         purchasing_cost: 購入金額
         payment_type: 支払い方法
         purchase_place: 購入先
+        refund: 返金
         remarks: 備考
         stocking_date_from: 購入日時（From）
         stocking_date_to: 購入日時（To）
@@ -26,6 +27,7 @@ ja:
         color: 色
         estimated_price: 原価
         stock: 在庫有無
+        janck: ジャンク
 
       sale:
         sales_date: 販売日時

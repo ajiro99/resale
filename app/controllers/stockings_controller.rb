@@ -56,8 +56,9 @@ class StockingsController < ApplicationController
     params.require(:stocking).permit(
       :purchase_date, :product_type, :purchase_price, :shipping_cost,
       :use_points, :purchasing_cost, :payment_type, :purchase_place, :remarks,
+      :refund,
       stocking_products_attributes:
-        %i(product_id color estimated_price)
+        %i(product_id color estimated_price janck)
     )
   end
 
@@ -65,8 +66,9 @@ class StockingsController < ApplicationController
     params.require(:stocking).permit(
       :purchase_date, :product_type, :purchase_price, :shipping_cost,
       :use_points, :purchasing_cost, :payment_type, :purchase_place, :remarks,
+      :refund,
       stocking_products_attributes:
-        %i(product_id color estimated_price destroy id)
+        %i(product_id color estimated_price janck destroy id)
     )
   end
 end

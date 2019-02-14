@@ -32,6 +32,9 @@
     .cell.medium-3
       = f.label :purchasing_cost
       = f.number_field :purchasing_cost
+    .cell.medium-3
+      = f.label :purchasing_cost
+      = f.number_field :purchasing_cost
 
   = f.fields_for :stocking_products do |stocking_products_form|
     .grid-x.grid-margin-x
@@ -51,10 +54,17 @@
         = stocking_products_form.label :estimated_price
         = stocking_products_form.number_field :estimated_price
       - unless new_action?
-        .cell.medium-2
+        .cell.medium-1
           = stocking_products_form.label :stock
           - if stocking_products_form.object&.product&.present?
             = stocking_products_form.object&.sale&.present? ? '×' : '◯'
+      .cell.medium-1
+        = stocking_products_form.label :janck
+        = stocking_products_form.check_box :janck
+  .grid-x.grid-margin-x
+    .cell.medium-1
+      = f.label :refund
+      = f.check_box :refund
 
   .grid-x.grid-margin-x
     .cell.medium-6
