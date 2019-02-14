@@ -9,6 +9,7 @@ class CreateStockings < ActiveRecord::Migration[5.2]
       t.integer :purchasing_cost, default: 0
       t.integer :payment_type
       t.integer :purchase_place
+      t.boolean :refund
       t.string :remarks
 
       t.timestamps
