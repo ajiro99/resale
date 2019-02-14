@@ -79,18 +79,32 @@ Product.seed do |s|
   s.id = 12
   s.type = 'Lense'
   s.maker = 1
-  s.name = 'M.ZUIKO 17mm'
+  s.name = 'M.ZUIKO 14-42mm II'
 end
 
 Product.seed do |s|
   s.id = 13
   s.type = 'Lense'
   s.maker = 1
-  s.name = 'ボディキャップレンズ 15mm'
+  s.name = 'M.ZUIKO 40-150mm II'
 end
 
 Product.seed do |s|
   s.id = 14
+  s.type = 'Lense'
+  s.maker = 1
+  s.name = 'M.ZUIKO 17mm'
+end
+
+Product.seed do |s|
+  s.id = 15
+  s.type = 'Lense'
+  s.maker = 1
+  s.name = 'ボディキャップレンズ 15mm'
+end
+
+Product.seed do |s|
+  s.id = 16
   s.type = 'Lense'
   s.maker = 2
   s.name = 'NIKKOR 18-55mm VR'

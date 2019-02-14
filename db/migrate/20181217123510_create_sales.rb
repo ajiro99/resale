@@ -13,9 +13,11 @@ class CreateSales < ActiveRecord::Migration[5.2]
       t.integer :sales, default: 0
       t.integer :profit, default: 0
       t.decimal :profit_rate, precision: 5, scale: 2
+      t.integer :state
       t.integer :account
       t.integer :sales_channel
       t.string :remarks
+      t.string :product_description
 
       t.timestamps
     end

@@ -19,6 +19,15 @@
     .cell.medium-2
       = f.label Sale.human_attribute_name(:shipping_type)
       = f.select(:shipping_type_eq, select_sale_shipping_types, include_blank: true)
+    .cell.medium-2
+      = f.label Sale.human_attribute_name(:state)
+      = f.select(:state_eq, select_sale_states, include_blank: true)
+    .cell.medium-2
+      = f.label Sale.human_attribute_name(:sales_channel)
+      = f.select(:sales_channel_eq, select_sale_sales_channel, include_blank: true)
+    .cell.medium-2
+      = f.label Sale.human_attribute_name(:account)
+      = f.select(:account_eq, select_sale_account_channel, include_blank: true)
 
   .grid-x.grid-margin-x
     .cell.medium-3

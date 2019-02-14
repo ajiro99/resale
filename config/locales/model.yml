@@ -42,9 +42,11 @@ ja:
         sales: 売上
         profit: 利益
         profit_rate: 利益率
+        state: 状態
         account: アカウント
         sales_channel: 販路
         remarks: 備考
+        product_description: 商品説明
         sales_date_from: 販売日時（From）
         sales_date_to: 販売日時（To）
         stocking_products_product_maker: メーカー
@@ -90,6 +92,13 @@ ja:
         compact: 宅急便コンパクト
         size_60: 60サイズ
         size_70: 70サイズ
+      state:
+        new: 新品、未使用
+        close_to_unused: 未使用に近い
+        no_scratch: 目立った傷や汚れなし
+        slightly_scratched: やや傷や汚れあり
+        with_scratches: 傷や汚れあり
+        bad_condition: 全体的に状態が悪い
 
     product:
       maker:

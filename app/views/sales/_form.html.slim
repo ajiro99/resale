@@ -70,15 +70,20 @@
     .cell.medium-2
       = f.label :profit_rate
       = f.text_field :profit_rate
+    .cell.medium-3
+      = f.label :state
+      = f.select :state, Sale.state.options, include_blank: true
     .cell.medium-2
       = f.label :sales_channel
       = f.select :sales_channel, Sale.sales_channel.options
     .cell.medium-2
-      -# TODO: メルカリのみ
       = f.label :account
       = f.select :account, Sale.account.options
   .grid-x.grid-margin-x
     .cell.medium-4
       = f.label :remarks
       = f.text_area :remarks
+    .cell.medium-4
+      = f.label :product_description
+      = f.text_area :product_description
   .actions = f.submit class: 'button success'

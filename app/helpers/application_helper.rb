@@ -37,6 +37,24 @@ module ApplicationHelper
     end
   end
 
+  def select_sale_states
+    Sale.state.find_values(*Sale.state.values.map(&:to_sym)).map do |state|
+      [state.text, state.value]
+    end
+  end
+
+  def select_sale_sales_channel
+    Sale.sales_channel.find_values(*Sale.sales_channel.values.map(&:to_sym)).map do |sales_channel|
+      [sales_channel.text, sales_channel.value]
+    end
+  end
+
+  def select_sale_account_channel
+    Sale.account.find_values(*Sale.account.values.map(&:to_sym)).map do |account|
+      [account.text, account.value]
+    end
+  end
+
   def defalt_date
     Time.now.strftime('%Y-%m-%d')
   end

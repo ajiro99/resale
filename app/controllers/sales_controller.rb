@@ -80,7 +80,7 @@ class SalesController < ApplicationController
     params.require(:sale).permit(
       :sales_date, :product_type, :stocking_price, :bonus_price, :cost,
       :selling_price, :fee, :shipping_type, :shipping_cost, :sales, :profit, :profit_rate,
-      :status, :remarks, :sales_channel, :account,
+      :status, :remarks, :sales_channel, :account, :state, :product_description,
       :target_body, :target_lense_1, :target_lense_2,
       sale_extras_attributes:
         %i(extra_id)

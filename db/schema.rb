@@ -51,9 +51,11 @@ ActiveRecord::Schema.define(version: 2019_02_07_180511) do
     t.integer "sales", default: 0
     t.integer "profit", default: 0
     t.decimal "profit_rate", precision: 5, scale: 2
+    t.integer "state"
     t.integer "account"
     t.integer "sales_channel"
     t.string "remarks"
+    t.string "product_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
