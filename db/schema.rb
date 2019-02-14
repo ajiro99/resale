@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_180511) do
     t.integer "sale_id"
     t.integer "estimated_price", default: 0
     t.integer "color"
+    t.boolean "janck"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_stocking_products_on_product_id"
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_180511) do
     t.integer "purchasing_cost", default: 0
     t.integer "payment_type"
     t.integer "purchase_place"
+    t.boolean "refund"
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
