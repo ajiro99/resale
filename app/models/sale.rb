@@ -12,6 +12,7 @@ class Sale < ApplicationRecord
   enumerize :product_type, in: { lense_kit: 1, body: 2, lense: 3, w_lense_kit: 4, other: 0 }, scope: true
   enumerize :sales_channel, in: { mercari: 1, yahoo_auctions: 2, other: 0 }, scope: true
   enumerize :account, in: { main: 1, sub: 2, other: 0 }, scope: true
+  enumerize :shipping_type, in: { compact: 445, size_60: 600, size_70: 700 }, scope: true
 
   def self.total_stocking_price
     sum(:stocking_price).to_s(:delimited)

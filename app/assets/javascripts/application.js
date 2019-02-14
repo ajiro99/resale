@@ -90,6 +90,11 @@ $(function(){
       $("#sale_sales").val(parseInt($("#sale_selling_price").val()) - parseInt($("#sale_fee").val()) - parseInt($("#sale_shipping_cost").val())).change();
   });
 
+  $(document).on('change', "[id^='sale_shipping_type']", function (){
+      $("#sale_shipping_cost").val($(this).val());
+      $('#sale_shipping_cost').trigger('keyup');
+  });
+
   $(document).on('keyup', "#sale_shipping_cost", function (){
       $("#sale_sales").val(parseInt($("#sale_selling_price").val()) - parseInt($("#sale_fee").val()) - parseInt($("#sale_shipping_cost").val())).change();
   });

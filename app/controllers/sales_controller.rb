@@ -65,9 +65,6 @@ class SalesController < ApplicationController
   end
 
   def search
-    # @q = Sale.search(search_params)
-    # @sales = @q.result.order(:sales_date)
-
     @q = Sale.search(search_params)
     @sales_q = @q.result.order(:sales_date)
     @sales = SaleDecorator.decorate_collection(@sales_q)
@@ -82,7 +79,7 @@ class SalesController < ApplicationController
   def sale_params
     params.require(:sale).permit(
       :sales_date, :product_type, :stocking_price, :bonus_price, :cost,
-      :selling_price, :fee, :shipping_cost, :sales, :profit, :profit_rate,
+      :selling_price, :fee, :shipping_type, :shipping_cost, :sales, :profit, :profit_rate,
       :status, :remarks, :sales_channel, :account,
       :target_body, :target_lense_1, :target_lense_2,
       sale_extras_attributes:

@@ -10,6 +10,4 @@ class SaleDecorator < Draper::Decorator
       stocking_product&.product&.name if stocking_product.product_id.present?
     end.compact.join('<br>')
   end
-
-
 end

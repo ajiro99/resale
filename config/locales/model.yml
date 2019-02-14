@@ -37,6 +37,7 @@ ja:
         cost: 仕入れ値
         selling_price: 販売価格
         fee: 販売手数料
+        shipping_type: 配送方法
         shipping_cost: 送料
         sales: 売上
         profit: 利益
@@ -85,6 +86,10 @@ ja:
         main: メイン
         sub: サブ
         other: その他
+      shipping_type:
+        compact: 宅急便コンパクト
+        size_60: 60サイズ
+        size_70: 70サイズ
 
     product:
       maker:

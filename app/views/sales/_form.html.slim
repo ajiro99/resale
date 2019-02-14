@@ -7,7 +7,7 @@
           li = message
 
   .grid-x.grid-margin-x
-    .cell.medium-3
+    .cell.medium-2
       = f.label :sales_date
       = f.date_field :sales_date, value: defalt_date
     .cell.medium-3
@@ -15,7 +15,7 @@
       = f.select :product_type, Sale.product_type.options
 
   .grid-x.grid-margin-x
-    .cell.medium-12
+    .cell.medium-8
       - bodyies = new_action? ? StockingProduct.in_stock.body : StockingProduct.edit_body(@sale.target_body)
       - target_lenses_1 = new_action? ? StockingProduct.in_stock.lense : StockingProduct.edit_lense1(@sale.target_lense_1)
       - target_lenses_2 = new_action? ? StockingProduct.in_stock.lense : StockingProduct.edit_lense2(@sale.target_lense_2)
@@ -38,38 +38,42 @@
         = hidden_field_tag "sale_extra_price_#{extra.id}", extra.price
 
   .grid-x.grid-margin-x
-    .cell.medium-3
+    .cell.medium-2
       = f.label :stocking_price
       = f.number_field :stocking_price
-    .cell.medium-3
+    .cell.medium-2
       = f.label :bonus_price
       = f.number_field :bonus_price
-    .cell.medium-3
+    .cell.medium-2
       = f.label :cost
       = f.number_field :cost
   .grid-x.grid-margin-x
-    .cell.medium-3
+    .cell.medium-2
       = f.label :selling_price
       = f.number_field :selling_price
-    .cell.medium-3
+    .cell.medium-2
       = f.label :fee
       = f.number_field :fee
-    .cell.medium-3
+    .cell.medium-2
+      = f.label :shipping_type
+      = f.select :shipping_type, select_sale_shipping_types, include_blank: true
+    .cell.medium-2
       = f.label :shipping_cost
       = f.number_field :shipping_cost
-    .cell.medium-3
+    .cell.medium-2
       = f.label :sales
       = f.number_field :sales
-    .cell.medium-3
+  .grid-x.grid-margin-x
+    .cell.medium-2
       = f.label :profit
       = f.number_field :profit
-    .cell.medium-3
+    .cell.medium-2
       = f.label :profit_rate
       = f.text_field :profit_rate
-    .cell.medium-3
+    .cell.medium-2
       = f.label :sales_channel
       = f.select :sales_channel, Sale.sales_channel.options
-    .cell.medium-3
+    .cell.medium-2
       -# TODO: メルカリのみ
       = f.label :account
       = f.select :account, Sale.account.options

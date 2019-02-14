@@ -7,32 +7,32 @@
           li = message
 
   .grid-x.grid-margin-x
-    .cell.medium-3
+    .cell.medium-2
       = f.label :purchase_date
       = f.date_field :purchase_date, value: defalt_date
     .cell.medium-3
       = f.label :product_type
       = f.select :product_type, Stocking.product_type.options
-    .cell.medium-3
+    .cell.medium-2
       = f.label :payment_type
       = f.select :payment_type, Stocking.payment_type.options
-    .cell.medium-3
+    .cell.medium-2
       = f.label :purchase_place
       = f.select :purchase_place, Stocking.purchase_place.options
   .grid-x.grid-margin-x
-    .cell.medium-3
+    .cell.medium-2
       = f.label :purchase_price
       = f.number_field :purchase_price
-    .cell.medium-3
+    .cell.medium-2
       = f.label :shipping_cost
       = f.number_field :shipping_cost
-    .cell.medium-3
+    .cell.medium-2
       = f.label :use_points
       = f.number_field :use_points
-    .cell.medium-3
+    .cell.medium-2
       = f.label :purchasing_cost
       = f.number_field :purchasing_cost
-    .cell.medium-3
+    .cell.medium-2
       = f.label :purchasing_cost
       = f.number_field :purchasing_cost
 

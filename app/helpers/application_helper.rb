@@ -31,6 +31,12 @@ module ApplicationHelper
     end
   end
 
+  def select_sale_shipping_types
+    Sale.shipping_type.find_values(*Sale.shipping_type.values.map(&:to_sym)).map do |shipping_type|
+      [shipping_type.text, shipping_type.value]
+    end
+  end
+
   def defalt_date
     Time.now.strftime('%Y-%m-%d')
   end
