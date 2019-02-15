@@ -9,9 +9,7 @@ h5 仕入一覧
       - @stocking.errors.full_messages.each do |message|
         li = message
 
-.right-align
-  span
-    = link_to 'New Stocking', new_stocking_path, class: 'button small'
+= link_to '登録', new_stocking_path, class: 'button'
 
 table
   tbody
@@ -59,5 +57,3 @@ table
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_stocking_path(stocking), delete_path: stocking}
 
 = paginate @stockings_q
-br
-= link_to 'New Stocking', new_stocking_path, class: 'button small'

@@ -1,32 +1,33 @@
-= search_form_for(@q, url:stockings_path) do |f|
-  .grid-x.grid-margin-x
-    .cell.medium-2
-      = f.label Stocking.human_attribute_name(:stocking_date_from)
-      = f.date_field :purchase_date_gteq
-    .cell.medium-2
-      = f.label Stocking.human_attribute_name(:stocking_date_to)
-      = f.date_field :purchase_date_lteq
-    .cell.medium-3
-      = f.label Stocking.human_attribute_name(:product_type)
-      = f.select(:product_type_eq, select_product_types, include_blank: true)
-    .cell.medium-2
-      = f.label Stocking.human_attribute_name(:stocking_products_product_maker)
-      = f.select(:stocking_products_product_maker_eq, select_product_makers, include_blank: true)
-  .grid-x.grid-margin-x
-    .cell.medium-3
-      = f.label Stocking.human_attribute_name(:stocking_products_product_name)
-      = f.text_field :stocking_products_product_name_cont
-    .cell.medium-2
-      = f.label Stocking.human_attribute_name(:purchase_place)
-      = f.select(:purchase_place_cont, select_purchase_places, include_blank: true)
-    .cell.medium-2
-      = f.label Stocking.human_attribute_name(:payment_type)
-      = f.select(:payment_type_cont, select_payment_types, include_blank: true)
-    .cell.medium-1
-      = f.label Stocking.human_attribute_name(:refund)
-      = f.select(:refund_eq, [['有り', true], ['無し', false]], include_blank: true)
+.callout
+  = search_form_for(@q, url:stockings_path) do |f|
+    .grid-x.grid-margin-x
+      .cell.medium-2
+        = f.label Stocking.human_attribute_name(:stocking_date_from)
+        = f.date_field :purchase_date_gteq
+      .cell.medium-2
+        = f.label Stocking.human_attribute_name(:stocking_date_to)
+        = f.date_field :purchase_date_lteq
+      .cell.medium-3
+        = f.label Stocking.human_attribute_name(:product_type)
+        = f.select(:product_type_eq, select_product_types, include_blank: true)
+      .cell.medium-2
+        = f.label Stocking.human_attribute_name(:stocking_products_product_maker)
+        = f.select(:stocking_products_product_maker_eq, select_product_makers, include_blank: true)
+    .grid-x.grid-margin-x
+      .cell.medium-3
+        = f.label Stocking.human_attribute_name(:stocking_products_product_name)
+        = f.text_field :stocking_products_product_name_cont
+      .cell.medium-2
+        = f.label Stocking.human_attribute_name(:purchase_place)
+        = f.select(:purchase_place_cont, select_purchase_places, include_blank: true)
+      .cell.medium-2
+        = f.label Stocking.human_attribute_name(:payment_type)
+        = f.select(:payment_type_cont, select_payment_types, include_blank: true)
+      .cell.medium-1
+        = f.label Stocking.human_attribute_name(:refund)
+        = f.select(:refund_eq, [['有り', true], ['無し', false]], include_blank: true)
 
-  .grid-x.grid-margin-x
-    .cell.medium-3
-      = link_to 'クリア', request.path, class: 'button secondary'
-      = f.submit '検索', class: 'button success'
+    .grid-x.grid-margin-x
+      .cell.medium-3
+        = link_to 'クリア', request.path, class: 'button secondary'
+        = f.submit '検索', class: 'button success'

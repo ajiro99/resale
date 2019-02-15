@@ -2,9 +2,7 @@ h5 売上一覧
 
 = render 'search_form'
 
-.right-align
-  span
-    = link_to '新規登録', new_sale_path, class: 'button'
+= link_to '登録', new_sale_path, class: 'button'
 
 table
   tbody
@@ -60,6 +58,4 @@ table
         td.text-right = ActionController::Base.helpers.number_to_percentage(sale.profit_rate.to_s(:delimited), precision: 2)
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_sale_path(sale), delete_path: sale}
 
-br
-
-= link_to '新規登録', new_sale_path, class: 'button'
+= paginate @sales_q
