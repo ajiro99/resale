@@ -12,21 +12,21 @@ table
       td
       td
       td
-      td.text-right = "合計　#{@sales_q.size.to_s(:delimited)}個"
-      td.text-right = @sales_q.total_stocking_price
-      td.text-right = @sales_q.total_bonus_price
-      td.text-right = @sales_q.total_cost
-      td.text-right = @sales_q.total_selling_price
-      td.text-right = @sales_q.total_fee
-      td.text-right = @sales_q.total_shipping_cost
-      td.text-right = @sales_q.total_sales
-      td.text-right = @sales_q.total_profit
-      td.text-right = @sales_q.total_profit_rate
+      td.text-right = "合計　#{@sales_total.size.to_s(:delimited)}個"
+      td.text-right =@sales_total.total_stocking_price
+      td.text-right =@sales_total.total_bonus_price
+      td.text-right =@sales_total.total_cost
+      td.text-right =@sales_total.total_selling_price
+      td.text-right =@sales_total.total_fee
+      td.text-right =@sales_total.total_shipping_cost
+      td.text-right =@sales_total.total_sales
+      td.text-right =@sales_total.total_profit
+      td.text-right =@sales_total.total_profit_rate
       td
       td
 
     tr
-      th = sort_link(@q, :sales_date, default_order: :desc)
+      th = sort_link(@q, :sales_date)
       th = sort_link(@q, :product_type)
       th = sort_link(@q, :stocking_products_product_maker, 'メーカー')
       th = sort_link(@q, :stocking_products_product_name, '商品名')

@@ -13,17 +13,17 @@ h5 仕入一覧
   span
     = link_to 'New Stocking', new_stocking_path, class: 'button small'
 
-table.striped
+table
   tbody
     tr
       td
       td
       td
-      td.text-right = "合計　#{@stockings_q.size.to_s(:delimited)}個"
-      td.text-right = @stockings_q.total_purchase_price
-      td.text-right = @stockings_q.total_shipping_cost
-      td.text-right = @stockings_q.total_use_point
-      td.text-right = @stockings_q.purchasing_cost
+      td.text-right = "合計　#{@stockings_total.size.to_s(:delimited)}個"
+      td.text-right = @stockings_total.total_purchase_price
+      td.text-right = @stockings_total.total_shipping_cost
+      td.text-right = @stockings_total.total_use_point
+      td.text-right = @stockings_total.purchasing_cost
       td
       td
       td
@@ -58,5 +58,6 @@ table.striped
         td = stocking.payment_type_text
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_stocking_path(stocking), delete_path: stocking}
 
+= paginate @stockings_q
 br
 = link_to 'New Stocking', new_stocking_path, class: 'button small'

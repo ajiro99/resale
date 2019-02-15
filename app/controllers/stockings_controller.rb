@@ -4,7 +4,8 @@ class StockingsController < ApplicationController
 
   def index
     @q = Stocking.ransack(params[:q])
-    @stockings_q = @q.result.order(purchase_date: :desc)
+    @stockings_total = @q.result
+    @stockings_q = @q.result.order(purchase_date: :desc).page(params[:page]).per(10)
     @stockings = StockingDecorator.decorate_collection(@stockings_q)
   end
 

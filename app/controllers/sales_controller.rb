@@ -3,7 +3,8 @@ class SalesController < ApplicationController
 
   def index
     @q = Sale.ransack(params[:q])
-    @sales_q = @q.result.order(:sales_date)
+    @sales_total = @q.result
+    @sales_q = @q.result.order(sales_date: :desc).page(params[:page]).per(10)
     @sales = SaleDecorator.decorate_collection(@sales_q)
   end
 
@@ -62,12 +63,6 @@ class SalesController < ApplicationController
     end
   rescue => e
     render plain: e.message
-  end
-
-  def search
-    @q = Sale.search(search_params)
-    @sales_q = @q.result.order(:sales_date)
-    @sales = SaleDecorator.decorate_collection(@sales_q)
   end
 
   private
