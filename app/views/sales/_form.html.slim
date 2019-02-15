@@ -9,7 +9,7 @@
   .grid-x.grid-margin-x
     .cell.medium-2
       = f.label :sales_date
-      = f.date_field :sales_date, value: defalt_date
+      = f.date_field :sales_date, value: defalt_date(f.object.sales_date)
     .cell.medium-3
       = f.label :product_type
       = f.select :product_type, Sale.product_type.options

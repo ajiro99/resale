@@ -45,7 +45,18 @@ $(function(){
 
       $("#stocking_purchasing_cost").val(purchasing_cost).change();
 
-      $("#stocking_stocking_products_attributes_0_estimated_price").val(purchasing_cost).change();
+      if ($("#stocking_product_type").val() === "lense") {
+          $("#stocking_stocking_products_attributes_1_estimated_price").val(purchasing_cost).change();
+      } else {
+          $("#stocking_stocking_products_attributes_0_estimated_price").val(purchasing_cost).change();
+      }
+  });
+
+  $(document).on('change', "[id^='stocking_product_type']", function (){
+      if ($(this).val() === "lense") {
+          $("#stocking_stocking_products_attributes_1_estimated_price").val($("#stocking_stocking_products_attributes_0_estimated_price").val()).change();
+          $("#stocking_stocking_products_attributes_0_estimated_price").val(0).change();
+      }
   });
 
   $(document).on('keyup', "#stocking_shipping_cost", function (){

@@ -55,7 +55,7 @@ module ApplicationHelper
     end
   end
 
-  def defalt_date
-    Time.now.strftime('%Y-%m-%d')
+  def defalt_date(date)
+    date.present? ? date : Time.now.strftime('%Y-%m-%d')
   end
 end

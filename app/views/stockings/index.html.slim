@@ -30,7 +30,7 @@ table.striped
       td
       td
     tr
-      th = sort_link(@q, :purchase_date, default_order: :desc)
+      th = sort_link(@q, :purchase_date)
       th = sort_link(@q, :product_type)
       th = sort_link(@q, :maker, 'メーカー')
       th = sort_link(@q, :product_name, '商品名')
@@ -38,8 +38,8 @@ table.striped
       th = sort_link(@q, :shipping_cost, default_order: :desc)
       th = sort_link(@q, :use_points, default_order: :desc)
       th = sort_link(@q, :purchasing_cost, default_order: :desc)
-      th = sort_link(@q, :payment_type, default_order: :desc)
       th = sort_link(@q, :purchase_place, default_order: :desc)
+      th = sort_link(@q, :payment_type, default_order: :desc)
       th = sort_link(@q, :remarks)
       th
       th
@@ -54,9 +54,8 @@ table.striped
         td.text-right = stocking.shipping_cost.to_s(:delimited)
         td.text-right = stocking.use_points.to_s(:delimited)
         td.text-right = stocking.purchasing_cost.to_s(:delimited)
-        td = stocking.payment_type_text
         td = stocking.purchase_place_text
-        td = stocking.remarks
+        td = stocking.payment_type_text
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_stocking_path(stocking), delete_path: stocking}
 
 br
