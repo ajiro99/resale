@@ -73,15 +73,15 @@ $(function(){
       lense2_price = 0
 
       if ($("#sale_target_body option:selected").text() != "") {
-          body_price = parseInt($("#sale_target_body option:selected").text().split('/')[6].replace(",", ""));
+          body_price = parseInt($("#sale_target_body option:selected").text().split('/')[5].replace(",", ""));
       }
 
       if ($("#sale_target_lense_1 option:selected").text() != "") {
-          lense1_price = parseInt($("#sale_target_lense_1 option:selected").text().split('/')[6].replace(",", ""));
+          lense1_price = parseInt($("#sale_target_lense_1 option:selected").text().split('/')[5].replace(",", ""));
       }
 
       if ($("#sale_target_lense_2 option:selected").text() != "") {
-          lense2_price = parseInt($("#sale_target_lense_2 option:selected").text().split('/')[6].replace(",", ""));
+          lense2_price = parseInt($("#sale_target_lense_2 option:selected").text().split('/')[5].replace(",", ""));
       }
 
       $("#sale_stocking_price").val(body_price + lense1_price + lense2_price);
