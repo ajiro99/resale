@@ -28,7 +28,8 @@
         = f.select(:refund_eq, [['有り', true], ['無し', false]], include_blank: true)
       .cell.medium-2
         = f.label '在庫'
-        = f.select(:stocking_products_sale_id_blank, [['有り', true], ['無し', false]], include_blank: true)
+        = f.check_box :stock
+        / = f.select(:stock, [['有り', true], ['無し', false]], include_blank: true)
 
     .grid-x.grid-margin-x
       .cell.medium-3

@@ -16,3 +16,8 @@
 
  */
 .red_text { color: #ff0000; }
+
+li.stock {
+    display: inline-block;
+    color: #ff0000;
+}
