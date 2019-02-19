@@ -45,7 +45,7 @@ table
       tr
         td = date_text(sale.sales_date)
         td = sale.product_type_text
-        td = sale.maker&.upcase
+        td = sale.maker
         td == sale.product_name
         td.text-right = sale.stocking_price.to_s(:delimited)
         td.text-right = sale.bonus_price.to_s(:delimited)

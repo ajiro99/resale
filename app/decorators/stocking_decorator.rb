@@ -2,12 +2,12 @@ class StockingDecorator < Draper::Decorator
   delegate_all
 
   def maker
-    stocking_products.first&.product&.maker || stocking_products.second&.product&.maker
+    stocking_products.first&.product&.maker&.capitalize || stocking_products.second&.product&.maker&.capitalize
   end
 
   def product_name
     stocking_products.map do |stocking_product|
-      "#{stocking_product&.product&.name} （#{stocking_product.color}）#{stock_mark(stocking_product.sale_id)}" if stocking_product.product_id.present?
+      "#{stocking_product&.product&.name} （#{stocking_product.color&.capitalize}）#{stock_mark(stocking_product.sale_id)}" if stocking_product.product_id.present?
     end.compact.join('<br>')
   end
 

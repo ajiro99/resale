@@ -44,7 +44,7 @@ table
       tr
         td = date_text(stocking.purchase_date)
         td = stocking.product_type_text
-        td = stocking.maker.upcase
+        td = stocking.maker
         td == stocking.product_name
         td.text-right = stocking.purchase_price.to_s(:delimited)
         td.text-right = stocking.shipping_cost.to_s(:delimited)

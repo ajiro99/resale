@@ -1,0 +1,13 @@
+br
+.grid-x.grid-margin-x
+  .cell.medium-6
+    = form_for @note_1 do |f|
+      = f.text_area :note, rows: 22
+
+      .actions = f.submit
+
+  .cell.medium-6
+    = form_for @note_2 do |f|
+      = f.text_area :note, rows: 22
+
+      .actions = f.submit
