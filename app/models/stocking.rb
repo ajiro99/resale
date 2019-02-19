@@ -34,7 +34,7 @@ class Stocking < ApplicationRecord
   private
 
   def check_saled
-    return true if stocking_products.in_stock.size == 3
+    return true if stocking_products.where(sale_id: nil).size == 3
     errors.add(:base, 'この商品は売却されている為、削除できません')
     throw :abort
   end

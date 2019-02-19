@@ -1,2 +1,24 @@
-h1 DashBoard#index
-p Find me in app/views/dash_board/index.html.slim
+br
+.grid-x.grid-margin-x
+  .cell.medium-3
+    .callout
+      p.fi-shopping-cart 在庫
+      table
+        thead
+          tr
+            th
+            th.text-right 個数
+            th.text-right 金額
+        tbody.text-right
+          tr
+            td ボディ
+            td = @total_stock.body.size
+            td = @total_stock.body.total_estimated_price
+          tr
+            td レンズ
+            td = @total_stock.lense.size
+            td = @total_stock.lense.total_estimated_price
+          tr
+            td 合計
+            td = @total_stock.size
+            td = @total_stock.total_estimated_price

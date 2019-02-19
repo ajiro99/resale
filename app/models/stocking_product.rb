@@ -6,7 +6,7 @@ class StockingProduct < ApplicationRecord
   extend Enumerize
   enumerize :color, in: { WHITE: 1, SILVER: 2, BLACK: 3, RED: 4 }, scope: true
 
-  scope :in_stock, -> { where(sale_id: nil) }
+  scope :in_stock, -> { where(sale_id: nil).where.not(product_id: nil) }
   scope :body, -> { joins(:product).where('products.type = ?', 'Body').order(:product_id, :color) }
   scope :lense, -> { joins(:product).where('products.type = ?', 'Lense').order(:product_id, :color) }
 
@@ -16,5 +16,9 @@ class StockingProduct < ApplicationRecord
 
   def product_name
     "#{product.name} / #{color} / #{stocking.purchase_date} / #{stocking.purchase_place_text} / #{stocking.product_type_text} / #{estimated_price.to_s(:delimited)}"
+  end
+
+  def self.total_estimated_price
+    sum(:estimated_price).to_s(:delimited)
   end
 end

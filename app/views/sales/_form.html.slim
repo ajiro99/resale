@@ -56,7 +56,7 @@
       = f.number_field :fee
     .cell.medium-2
       = f.label :shipping_type
-      = f.select :shipping_type, select_sale_shipping_types, include_blank: true
+      = f.select :shipping_type, Sale.shipping_type.options, include_blank: true
     .cell.medium-2
       = f.label :shipping_cost
       = f.number_field :shipping_cost
