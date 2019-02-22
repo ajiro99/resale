@@ -13,11 +13,10 @@ table
       td.text-right = "合計　#{@sales_total.size.to_s(:delimited)}個"
       td.text-right =@sales_total.total_stocking_price
       td.text-right =@sales_total.total_bonus_price
-      td.text-right.red_text =@sales_total.total_cost
-      td.text-right =@sales_total.total_selling_price
+      td.text-right.blue_text =@sales_total.total_cost
+      td.text-right.red_text =@sales_total.total_selling_price
       td.text-right =@sales_total.total_fee
       td.text-right =@sales_total.total_shipping_cost
-      td.text-right.red_text =@sales_total.total_sales
       td.text-right.red_text =@sales_total.total_profit
       td.text-right =@sales_total.total_profit_rate
       td
@@ -34,7 +33,6 @@ table
       th = sort_link(@q, :selling_price, default_order: :desc)
       th = sort_link(@q, :fee, default_order: :desc)
       th = sort_link(@q, :shipping_cost, default_order: :desc)
-      th = sort_link(@q, :sales, default_order: :desc)
       th = sort_link(@q, :profit, default_order: :desc)
       th = sort_link(@q, :profit_rate, default_order: :desc)
       th
@@ -49,11 +47,10 @@ table
         td == sale.product_name
         td.text-right = sale.stocking_price.to_s(:delimited)
         td.text-right = sale.bonus_price.to_s(:delimited)
-        td.text-right.red_text = sale.cost.to_s(:delimited)
-        td.text-right = sale.selling_price.to_s(:delimited)
+        td.text-right.blue_text = sale.cost.to_s(:delimited)
+        td.text-right.red_text = sale.selling_price.to_s(:delimited)
         td.text-right = sale.fee.to_s(:delimited)
         td.text-right = sale.shipping_cost.to_s(:delimited)
-        td.text-right.red_text = sale.sales.to_s(:delimited)
         td.text-right.red_text = sale.profit.to_s(:delimited)
         td.text-right = ActionController::Base.helpers.number_to_percentage(sale.profit_rate.to_s(:delimited), precision: 2)
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_sale_path(sale), delete_path: sale}

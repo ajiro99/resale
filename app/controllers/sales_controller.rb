@@ -2,7 +2,11 @@ class SalesController < ApplicationController
   before_action :set_sale, only: %i(edit update destroy)
 
   def index
-    @q = Sale.ransack(params[:q])
+    @q = Sale.ransack(
+      params.fetch(
+        :q, sales_date_gteq: Time.zone.now.beginning_of_year.strftime('%Y-%m-%d')
+      )
+    )
     @sales_total = @q.result
     @sales_q = @q.result.order(sales_date: :desc).page(params[:page]).per(10)
     @sales = SaleDecorator.decorate_collection(@sales_q)

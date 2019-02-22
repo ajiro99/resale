@@ -119,7 +119,7 @@ $(function(){
   });
 
   $(document).on('change', "#sale_profit", function (){
-      $("#sale_profit_rate").val((parseInt($("#sale_profit").val()) / parseInt($("#sale_sales").val())) * 100);
+      $("#sale_profit_rate").val((parseInt($("#sale_profit").val()) / parseInt($("#sale_selling_price").val())) * 100);
   });
 
   $(document).on('change', "[id^='sale_extra_id']", function (){

@@ -8,6 +8,9 @@ class Sale < ApplicationRecord
   has_many :sale_extras
   accepts_nested_attributes_for :sale_extras, allow_destroy: true, reject_if: :all_blank
 
+  scope :this_month, -> { where(sales_date: Time.now.all_month) }
+  scope :this_year, -> { where(sales_date: Time.now.all_year) }
+
   extend Enumerize
   enumerize :product_type, in: { lense_kit: 1, body: 2, lense: 3, w_lense_kit: 4, other: 0 }, scope: true
   enumerize :sales_channel, in: { mercari: 1, yahoo_auctions: 2, other: 0 }, scope: true

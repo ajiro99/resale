@@ -16,6 +16,7 @@
 
  */
 .red_text { color: #ff0000; }
+.blue_text { color: #0000ff; }
 
 li.stock {
     display: inline-block;

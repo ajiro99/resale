@@ -1,5 +1,36 @@
 br
 .grid-x.grid-margin-x
+  .cell.medium-4
+    .callout
+      p.fi-yen = "今月の売上　目標達成率：#{number_to_percentage(@sale_of_this_months.sum(:profit).fdiv(50000) * 100, precision: 2)}"
+      table
+        thead
+          tr
+            th
+            th.text-right 個数
+            th.text-right 売上
+            th.text-right 利益
+            th.text-right 利益率
+        tbody.text-right
+          tr
+            td = I18n.t('enumerize.sale.account.main')
+            td = @sale_of_this_months.with_account(:main).size
+            td = @sale_of_this_months.with_account(:main).total_selling_price
+            td = @sale_of_this_months.with_account(:main).total_profit
+            td = @sale_of_this_months.with_account(:main).total_profit_rate
+          tr
+            td = I18n.t('enumerize.sale.account.sub')
+            td = @sale_of_this_months.with_account(:sub).size
+            td = @sale_of_this_months.with_account(:sub).total_selling_price
+            td = @sale_of_this_months.with_account(:sub).total_profit
+            td = @sale_of_this_months.with_account(:sub).total_profit_rate
+          tr
+            td 合計
+            td = @sale_of_this_months.size
+            td = @sale_of_this_months.total_selling_price
+            td.red_text = @sale_of_this_months.total_profit
+            td.red_text = @sale_of_this_months.total_profit_rate
+
   .cell.medium-3
     .callout
       p.fi-shopping-cart 在庫
@@ -8,17 +39,103 @@ br
           tr
             th
             th.text-right 個数
-            th.text-right 金額
+            th.text-right 原価
         tbody.text-right
           tr
             td ボディ
-            td = @total_stock.body.size
-            td = @total_stock.body.total_estimated_price
+            td = @total_stocks.body.size
+            td = @total_stocks.body.total_estimated_price
           tr
             td レンズ
-            td = @total_stock.lense.size
-            td = @total_stock.lense.total_estimated_price
+            td = @total_stocks.lense.size
+            td = @total_stocks.lense.total_estimated_price
           tr
             td 合計
-            td = @total_stock.size
-            td = @total_stock.total_estimated_price
+            td = @total_stocks.size
+            td.red_text = @total_stocks.total_estimated_price
+
+  .cell.medium-4
+    .callout
+      p.fi-results 今月の仕入
+      table
+        thead
+          tr
+            th
+            th.text-right 個数
+            th.text-right 購入額
+        tbody.text-right
+          tr
+            td = I18n.t('enumerize.stocking.purchase_place.yahoo_auctions')
+            td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).size
+            td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).purchasing_cost
+          tr
+            td = I18n.t('enumerize.stocking.purchase_place.mercari')
+            td = @stocking_of_this_months.with_purchase_place(:mercari).size
+            td = @stocking_of_this_months.with_purchase_place(:mercari).purchasing_cost
+          tr
+            td = I18n.t('enumerize.stocking.purchase_place.kitamura')
+            td = @stocking_of_this_months.with_purchase_place(:kitamura).size
+            td = @stocking_of_this_months.with_purchase_place(:kitamura).purchasing_cost
+          tr
+            td 合計
+            td = @stocking_of_this_months.size
+            td.red_text = @stocking_of_this_months.purchasing_cost
+
+.grid-x.grid-margin-x
+  .cell.medium-4
+    .callout
+      p.fi-yen = "月別の売上"
+      table
+        thead
+          tr
+            th.text-right 月
+            th.text-right 売上
+            th.text-right 利益
+            th.text-right 利益率
+        tbody.text-right
+          - @sale_of_monthly.each do |sale|
+            tr
+              td = sale.sales_date.strftime('%-m月')
+              td = sale.selling_price.to_s(:delimited)
+              td = sale.profit.to_s(:delimited)
+              td = number_to_percentage(sale.profit.fdiv(sale.selling_price) * 100, precision: 2)
+          tr
+            td 合計
+            td = @sale_of_this_year.total_selling_price
+            td.red_text = @sale_of_this_year.total_profit
+            td.red_text = @sale_of_this_year.total_profit_rate
+
+  .cell.medium-4
+    .callout
+      p.fi-yen = "年別の売上"
+      table
+        thead
+          tr
+            th.text-right 年
+            th.text-right 売上
+            th.text-right 利益
+            th.text-right 利益率
+        tbody.text-right
+          - @sale_of_by_year.each do |sale|
+            tr
+              td = sale.sales_date.strftime('%Y年')
+              td = sale.selling_price.to_s(:delimited)
+              td = sale.profit.to_s(:delimited)
+              td = number_to_percentage(sale.profit.fdiv(sale.selling_price) * 100, precision: 2)
+          tr
+            td 合計
+            td = Sale.total_selling_price
+            td.red_text = Sale.total_profit
+            td.red_text = Sale.total_profit_rate
+
+.grid-x.grid-margin-x
+  .cell.medium-3
+    .callout
+      p.fi-link Link
+      li = link_to 'メルカリ（マイページ）', 'https://www.mercari.com/jp/mypage/', target: '_blank'
+      li = link_to 'ヤフオク（検索）', 'https://auctions.yahoo.co.jp/search/search?n=100&p=e-pl+%E3%83%80%E3%83%96%E3%83%AB&va=e-pl+%E3%83%80%E3%83%96%E3%83%AB&fixed=2&exflg=1&b=1&s1=new&o1=d', target: '_blank'
+      li = link_to 'ヤフオク（支払い一覧）', 'https://details.payment.yahoo.co.jp/PaymentDetailList', target: '_blank'
+      li = link_to 'モッピー（ヤフオク）', 'http://pc.moppy.jp/shopping/detail.php?site_id=1042', target: '_blank'
+      li = link_to 'カメラのキタムラ（オリンパス）', 'http://www.net-chuko.com/buy/list.do?kindName=%E3%83%9F%E3%83%A9%E3%83%BC%E3%83%AC%E3%82%B9%E4%B8%80%E7%9C%BC&detailsName=&makerName=%E3%82%AA%E3%83%AA%E3%83%B3%E3%83%91%E3%82%B9%EF%BC%88OLYMPUS%EF%BC%89&keyword=&price=&condition=&shop=0&photo=false&selling=false&ob=sp&lc=40&pg=1&is=1&ecmount=&eccolor=&ectype=&eclan=&ecundai=&eccase=&eczoom=&ecwater=&ecdust=&ecfilter=&echeight=&ecpixel=', target: '_blank'
+      li = link_to '風見鶏（ezShare）', 'https://store.shopping.yahoo.co.jp/flashmemory/search.html?p=ezShare&used=&uIv=on&X=2#CentSrchFilter1', target: '_blank'
+      li = link_to 'amazon（注文履歴）', 'https://www.amazon.co.jp/gp/css/order-history?ref_=nav_orders_first', target: '_blank'

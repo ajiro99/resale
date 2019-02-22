@@ -32,14 +32,14 @@ ja:
       sale:
         sales_date: 販売日時
         product_type: 商品タイプ
-        stocking_price: 購入金額
+        stocking_price: カメラ代
         bonus_price: おまけ
         cost: 仕入れ値
-        selling_price: 販売価格
+        selling_price: 売上
         fee: 手数料
         shipping_type: 配送方法
         shipping_cost: 送料
-        sales: 売上
+        sales: 販売利益
         profit: 利益
         profit_rate: 利益率
         state: 状態

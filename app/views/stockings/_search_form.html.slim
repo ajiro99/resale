@@ -19,10 +19,10 @@
         = f.text_field :stocking_products_product_name_cont
       .cell.medium-2
         = f.label Stocking.human_attribute_name(:purchase_place)
-        = f.select(:purchase_place_cont, select_purchase_places, include_blank: true)
+        = f.select(:purchase_place_eq, select_purchase_places, include_blank: true)
       .cell.medium-2
         = f.label Stocking.human_attribute_name(:payment_type)
-        = f.select(:payment_type_cont, select_payment_types, include_blank: true)
+        = f.select(:payment_type_eq, select_payment_types, include_blank: true)
       .cell.medium-1
         = f.label Stocking.human_attribute_name(:refund)
         = f.select(:refund_eq, [['有り', true], ['無し', false]], include_blank: true)

@@ -5,6 +5,8 @@ class Stocking < ApplicationRecord
   accepts_nested_attributes_for :stocking_products, allow_destroy: true, reject_if: :all_blank
 
   scope :stock, -> { joins(:stocking_products).where('stocking_products.product_id is not null').where('stocking_products.sale_id is null') }
+  scope :this_month, -> { where(purchase_date: Time.now.all_month) }
+  scope :this_year, -> { where(purchase_date: Time.now.all_year) }
 
   extend Enumerize
   enumerize :product_type, in: { lense_kit: 1, body: 2, lense: 3, w_lense_kit: 4, other: 0 }, scope: true

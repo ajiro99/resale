@@ -3,7 +3,7 @@
     .grid-x.grid-margin-x
       .cell.medium-2
         = f.label Sale.human_attribute_name(:sales_date_from)
-        = f.date_field :sales_date_gteq
+        = f.date_field :sales_date_gteq, value: @sales_date_from
       .cell.medium-2
         = f.label Sale.human_attribute_name(:sales_date_to)
         = f.date_field :sales_date_lteq
