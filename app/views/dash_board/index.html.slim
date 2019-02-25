@@ -154,9 +154,12 @@ br
       p.fi-yen 日付毎の販売数（2019年〜）
       table.unstriped
         thead
-          tr.blue_text
+          tr
             - for i in 1..16
-              th.text-center = i.ordinalize
+              - if i > 10
+                th.blue_text.text-center = i.ordinalize
+              - else
+                th.red_text.text-center = i.ordinalize
         tbody
           tr
             - @day_count[0..15].each do |count|
@@ -165,9 +168,12 @@ br
             - @day_proportion[0..15].each do |count|
               th.text-center = count
         thead
-          tr.blue_text
+          tr
             - for i in 17..31
-              th.text-center = i.ordinalize
+              - if i >= 25
+                th.red_text.text-center = i.ordinalize
+              - else
+                th.blue_text.text-center = i.ordinalize
         tbody
           tr
             - @day_count[16..30].each do |count|
