@@ -102,7 +102,12 @@ $(function(){
   });
 
   $(document).on('change', "[id^='sale_shipping_type']", function (){
-      $("#sale_shipping_cost").val($(this).val());
+      sale_shipping_cost = $(this).val().split('_')[1];
+      if (sale_shipping_cost === undefined) {
+          $("#sale_shipping_cost").val(0);
+      } else {
+          $("#sale_shipping_cost").val(sale_shipping_cost);
+      }
       $('#sale_shipping_cost').trigger('keyup');
   });
 
