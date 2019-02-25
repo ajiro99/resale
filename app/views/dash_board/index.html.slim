@@ -107,7 +107,7 @@ br
 
   .cell.medium-4
     .callout
-      p.fi-yen = "年別の売上"
+      p.fi-yen 年別の売上
       table
         thead
           tr
@@ -128,7 +128,54 @@ br
             td.red_text = Sale.total_profit
             td.red_text = Sale.total_profit_rate
 
-.grid-x.grid-margin-x
+  .cell.medium-4
+    .callout
+      p.fi-yen 曜日毎の販売数（2019年〜）
+      table
+        thead
+          tr
+            th.text-center.red_text 日
+            th.text-center 月
+            th.text-center 火
+            th.text-center 水
+            th.text-center 木
+            th.text-center 金
+            th.text-center.blue_text 土
+        tbody.text-right
+          tr
+            - @week_count.each do |count|
+              td = count
+          tr
+            - @week_proportion.each do |proportion|
+              td = proportion
+
+  .cell.medium-9
+    .callout
+      p.fi-yen 日付毎の販売数（2019年〜）
+      table.unstriped
+        thead
+          tr.blue_text
+            - for i in 1..16
+              th.text-center = i.ordinalize
+        tbody
+          tr
+            - @day_count[0..15].each do |count|
+              th.text-center = count
+          tr
+            - @day_proportion[0..15].each do |count|
+              th.text-center = count
+        thead
+          tr.blue_text
+            - for i in 17..31
+              th.text-center = i.ordinalize
+        tbody
+          tr
+            - @day_count[16..30].each do |count|
+              th.text-center = count
+          tr
+            - @day_proportion[16..30].each do |count|
+              th.text-center = count
+
   .cell.medium-3
     .callout
       p.fi-link Link
