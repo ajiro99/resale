@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_171934) do
+ActiveRecord::Schema.define(version: 2019_03_01_074837) do
 
   create_table "extras", force: :cascade do |t|
     t.string "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_171934) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "remarks"
   end
 
   create_table "sale_extras", force: :cascade do |t|
@@ -91,6 +92,13 @@ ActiveRecord::Schema.define(version: 2019_02_18_171934) do
     t.integer "purchase_place"
     t.boolean "refund"
     t.string "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.integer "category"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

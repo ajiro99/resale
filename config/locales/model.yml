@@ -64,13 +64,14 @@ ja:
         yahoo: Yahooカード
         p_one: P_one
         amex: AMEX
+        point: ポイント
         cash: 現金
       purchase_place:
         yahoo_auctions: ヤフオク
         mercari: メルカリ
         kitamura: カメラのキタムラ
         hard_off: ハードオフ
-        soff_map: ソフマップ
+        rakuten: 楽天
         other: その他
 
     sale:

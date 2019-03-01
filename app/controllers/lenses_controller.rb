@@ -41,6 +41,6 @@ class LensesController < ApplicationController
   end
 
   def lense_params
-    params.require(:lense).permit(:type, :maker, :name)
+    params.require(:lense).permit(:type, :maker, :name, :remarks)
   end
 end

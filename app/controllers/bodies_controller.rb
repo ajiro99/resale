@@ -41,6 +41,6 @@ class BodiesController < ApplicationController
   end
 
   def body_params
-    params.require(:body).permit(:type, :maker, :name)
+    params.require(:body).permit(:type, :maker, :name, :remarks)
   end
 end

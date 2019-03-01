@@ -1,0 +1,39 @@
+h5 商品説明作成
+
+.grid-x.grid-margin-x
+  .cell.medium-5
+    = form_tag('/product_description') do
+      .grid-x.grid-margin-x
+        .cell
+          = label_tag 'アカウント'
+          = select :product_description, :account, Sale.account.options
+
+      .grid-x.grid-margin-x
+        .cell
+          = label_tag 'カテゴリー'
+          = select :product_description, :category, ApplicationRecord::Template.category.options
+
+      .grid-x.grid-margin-x
+        .cell
+          = label_tag 'ボディ'
+          = select :product_description, :body, options_from_collection_for_select(Body.all, :id, :name)
+
+      .grid-x.grid-margin-x
+        .cell
+          = label_tag 'レンズ'
+          = select :product_description, :lense, options_from_collection_for_select(Lense.all, :id, :name)
+
+      .grid-x.grid-margin-x
+        .cell
+          = label_tag 'おまけ'
+          = collection_check_boxes(:product_description, :extra_ids, Extra.all, :id, :name) do |b|
+            = b.label { b.check_box + b.text }
+
+      = submit_tag '商品説明作成'
+
+  .cell.medium-7
+    -if flash[:notice].present?
+      br
+      .grid-x.grid-margin-x
+        .cell
+          = text_area_tag 'product_description', flash[:notice], rows: 30

@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :stockings, excpt: %i(show)
   resources :sales, excpt: %i(show)
   resources :notes, only: %i(index update)
+
+  get 'product_description' => 'product_descriptions#new'
+  post 'product_description' => 'product_descriptions#create'
 end
