@@ -32,8 +32,8 @@ h5 商品説明作成
       = submit_tag '商品説明作成'
 
   .cell.medium-7
-    -if flash[:notice].present?
+    -if @description.present?
       br
       .grid-x.grid-margin-x
         .cell
-          = text_area_tag 'product_description', flash[:notice], rows: 30
+          = text_area_tag 'product_description', @description, rows: 30

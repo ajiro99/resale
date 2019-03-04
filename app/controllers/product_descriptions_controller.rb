@@ -15,16 +15,15 @@ class ProductDescriptionsController < ApplicationController
         "・#{extra.name}【新品】"
       end
 
-    description = Template.with_category(product_description[:category]).first.description
+    @description = Template.with_category(product_description[:category]).first.description
                           .gsub('%body%', body_name)
                           .gsub('%lense%', lense)
                           .gsub('%remarks%', remarks.presence || '')
                           .gsub('%extra%', extra.join("\n"))
 
 
-    description = description.gsub('❤️', '⭐️') if product_description[:account] == Sale.account.find_value(:sub)
-
-    redirect_to product_description_path, notice: description
+    @description = @description.gsub('❤️', '⭐️') if product_description[:account] == Sale.account.find_value(:sub)
+    render :new
   end
 
   private
