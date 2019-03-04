@@ -7,7 +7,7 @@ class SalesController < ApplicationController
         :q, sales_date_gteq: Time.zone.now.beginning_of_year.strftime('%Y-%m-%d')
       )
     )
-    @sales_total = @q.result
+    @sales_total = SalesDecorator.decorate(@q.result)
     @sales_q = @q.result.order(sales_date: :desc).page(params[:page]).per(10)
     @sales = SaleDecorator.decorate_collection(@sales_q)
   end

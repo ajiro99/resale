@@ -19,40 +19,4 @@ class Sale < ApplicationRecord
   enumerize :state, in: {
     new: 1, close_to_unused: 2, no_scratch: 3, slightly_scratched: 4, with_scratches: 5, bad_condition: 6
   }, scope: true
-
-  def self.total_stocking_price
-    sum(:stocking_price).to_s(:delimited)
-  end
-
-  def self.total_bonus_price
-    sum(:bonus_price).to_s(:delimited)
-  end
-
-  def self.total_cost
-    sum(:cost).to_s(:delimited)
-  end
-
-  def self.total_selling_price
-    sum(:selling_price).to_s(:delimited)
-  end
-
-  def self.total_fee
-    sum(:fee).to_s(:delimited)
-  end
-
-  def self.total_shipping_cost
-    sum(:shipping_cost).to_s(:delimited)
-  end
-
-  def self.total_sales
-    sum(:sales).to_s(:delimited)
-  end
-
-  def self.total_profit
-    sum(:profit).to_s(:delimited)
-  end
-
-  def self.total_profit_rate
-    ActionController::Base.helpers.number_to_percentage(sum(:profit).fdiv(sum(:selling_price)) * 100, precision: 2)
-  end
 end

@@ -45,14 +45,14 @@ table
         td = sale.product_type_text
         td = sale.maker
         td == sale.product_name
-        td.text-right = sale.stocking_price.to_s(:delimited)
-        td.text-right = sale.bonus_price.to_s(:delimited)
-        td.text-right.blue_text = sale.cost.to_s(:delimited)
-        td.text-right.red_text = sale.selling_price.to_s(:delimited)
-        td.text-right = sale.fee.to_s(:delimited)
-        td.text-right = sale.shipping_cost.to_s(:delimited)
-        td.text-right.red_text = sale.profit.to_s(:delimited)
-        td.text-right = ActionController::Base.helpers.number_to_percentage(sale.profit_rate.to_s(:delimited), precision: 2)
+        td.text-right = sale.stocking_price_text
+        td.text-right = sale.bonus_price_text
+        td.text-right.blue_text = sale.cost_text
+        td.text-right.red_text = sale.selling_price_text
+        td.text-right = sale.fee_text
+        td.text-right = sale.shipping_cost_text
+        td.text-right.red_text = sale.profit_text
+        td.text-right = sale.profit_rate_text
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_sale_path(sale), delete_path: sale}
 
 = paginate @sales_q
