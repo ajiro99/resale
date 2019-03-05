@@ -61,7 +61,7 @@ br
         thead
           tr
             th
-            th.text-right 個数
+            th.text-right 回数
             th.text-right 購入額
         tbody.text-right
           tr
@@ -76,6 +76,10 @@ br
             td = I18n.t('enumerize.stocking.purchase_place.kitamura')
             td = @stocking_of_this_months.with_purchase_place(:kitamura).size
             td = @stocking_of_this_months.with_purchase_place(:kitamura).purchasing_cost
+          tr
+            td その他
+            td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).size
+            td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).purchasing_cost
           tr
             td 合計
             td = @stocking_of_this_months.size
