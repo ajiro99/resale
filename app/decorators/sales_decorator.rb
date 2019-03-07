@@ -25,6 +25,30 @@ class SalesDecorator < Draper::CollectionDecorator
     to_percentage(remove_comma(total_profit), remove_comma(total_selling_price))
   end
 
+  def self.select_sale_shipping_types
+    Sale.shipping_type.find_values(*Sale.shipping_type.values.map(&:to_sym)).map do |shipping_type|
+      [shipping_type.text, shipping_type.value]
+    end
+  end
+
+  def self.select_sale_states
+    Sale.state.find_values(*Sale.state.values.map(&:to_sym)).map do |state|
+      [state.text, state.value]
+    end
+  end
+
+  def self.select_sale_sales_channel
+    Sale.sales_channel.find_values(*Sale.sales_channel.values.map(&:to_sym)).map do |sales_channel|
+      [sales_channel.text, sales_channel.value]
+    end
+  end
+
+  def self.select_sale_account_channel
+    Sale.account.find_values(*Sale.account.values.map(&:to_sym)).map do |account|
+      [account.text, account.value]
+    end
+  end
+
   private
 
   def total(column)

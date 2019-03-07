@@ -9,26 +9,26 @@
         = f.date_field :sales_date_lteq
       .cell.medium-3
         = f.label Sale.human_attribute_name(:product_type)
-        = f.select(:product_type_eq, select_product_types, include_blank: true)
+        = f.select(:product_type_eq, ProductsDecorator.select_product_types, include_blank: true)
       .cell.medium-2
         = f.label Sale.human_attribute_name(:stocking_products_product_maker)
-        = f.select(:stocking_products_product_maker_eq, select_product_makers, include_blank: true)
+        = f.select(:stocking_products_product_maker_eq, ProductsDecorator.select_product_makers, include_blank: true)
     .grid-x.grid-margin-x
       .cell.medium-3
         = f.label Sale.human_attribute_name(:stocking_products_product_name)
         = f.text_field :stocking_products_product_name_cont
       .cell.medium-2
         = f.label Sale.human_attribute_name(:shipping_type)
-        = f.select(:shipping_type_eq, select_sale_shipping_types, include_blank: true)
+        = f.select(:shipping_type_eq, SalesDecorator.select_sale_shipping_types, include_blank: true)
       .cell.medium-2
         = f.label Sale.human_attribute_name(:state)
-        = f.select(:state_eq, select_sale_states, include_blank: true)
+        = f.select(:state_eq, SalesDecorator.select_sale_states, include_blank: true)
       .cell.medium-2
         = f.label Sale.human_attribute_name(:sales_channel)
-        = f.select(:sales_channel_eq, select_sale_sales_channel, include_blank: true)
+        = f.select(:sales_channel_eq, SalesDecorator.select_sale_sales_channel, include_blank: true)
       .cell.medium-2
         = f.label Sale.human_attribute_name(:account)
-        = f.select(:account_eq, select_sale_account_channel, include_blank: true)
+        = f.select(:account_eq, SalesDecorator.select_sale_account_channel, include_blank: true)
 
     .grid-x.grid-margin-x
       .cell.medium-3
