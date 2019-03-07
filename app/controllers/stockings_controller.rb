@@ -8,7 +8,6 @@ class StockingsController < ApplicationController
     @stockings_q = result.order(purchase_date: :desc).page(params[:page]).per(10)
     @stockings = StockingsDecorator.decorate(@stockings_q)
 
-    # @stockings_total = params[:q].present? && params[:q][:stock] == '1' ? @q.result(distinct: true) : @q.result
     s = Stocking.arel_table
     @stockings_total =
       result.select(

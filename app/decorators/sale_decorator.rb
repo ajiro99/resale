@@ -66,10 +66,11 @@ class SaleDecorator < Draper::Decorator
   private
 
   def to_delimited(column)
-    column.to_s(:delimited)
+    column&.to_s(:delimited)
   end
 
   def to_percentage(target, source)
+    return if target.blank? || source.blank?
     ActionController::Base.helpers.number_to_percentage(
       target.fdiv(source) * 100, precision: 2
     )

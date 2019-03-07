@@ -15,6 +15,6 @@ class StockingProductDecorator < Draper::Decorator
   private
 
   def to_delimited(column)
-    column.to_s(:delimited)
+    column&.to_s(:delimited)
   end
 end
