@@ -57,31 +57,17 @@ br
             th.text-right ポイント利用
             th.text-right 仕入値
         tbody.text-right
-          tr
-            td = I18n.t('enumerize.stocking.purchase_place.yahoo_auctions')
-            td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).size
-            td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).total_use_point
-            td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).purchasing_cost
-          tr
-            td = I18n.t('enumerize.stocking.purchase_place.mercari')
-            td = @stocking_of_this_months.with_purchase_place(:mercari).size
-            td = @stocking_of_this_months.with_purchase_place(:mercari).total_use_point
-            td = @stocking_of_this_months.with_purchase_place(:mercari).purchasing_cost
-          tr
-            td = I18n.t('enumerize.stocking.purchase_place.kitamura')
-            td = @stocking_of_this_months.with_purchase_place(:kitamura).size
-            td = @stocking_of_this_months.with_purchase_place(:kitamura).total_use_point
-            td = @stocking_of_this_months.with_purchase_place(:kitamura).purchasing_cost
-          tr
-            td その他
-            td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).size
-            td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).total_use_point
-            td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).purchasing_cost
+          - @stocking_of_this_months.each do |stocking|
+            tr
+              td = stocking.purchase_place_text
+              td = stocking.count
+              td = stocking.use_points_text
+              td = stocking.purchasing_cost_text
           tr
             td 合計
-            td = @stocking_of_this_months.size
-            td = @stocking_of_this_months.total_use_point
-            td.red_text = @stocking_of_this_months.purchasing_cost
+            td = @stocking_of_this_months.total_count
+            td = @stocking_of_this_months.total_use_points
+            td.red_text = @stocking_of_this_months.total_purchasing_cost
 
 .grid-x.grid-margin-x
   .cell.medium-4

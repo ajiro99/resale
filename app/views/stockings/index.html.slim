@@ -17,11 +17,11 @@ table
       td
       td
       td
-      td.text-right = "合計　#{@stockings_total.size.to_s(:delimited)}個"
-      td.text-right = @stockings_total.total_purchase_price
-      td.text-right = @stockings_total.total_shipping_cost
-      td.text-right = @stockings_total.total_use_point
-      td.text-right.red_text = @stockings_total.purchasing_cost
+      td.text-right = @stockings_total.count_text
+      td.text-right = @stockings_total.purchase_price_text
+      td.text-right = @stockings_total.shipping_cost_text
+      td.text-right = @stockings_total.use_points_text
+      td.text-right.red_text = @stockings_total.purchasing_cost_text
       td
       td
       td
@@ -46,10 +46,10 @@ table
         td = stocking.product_type_text
         td = stocking.maker
         td == stocking.product_name
-        td.text-right = stocking.purchase_price.to_s(:delimited)
-        td.text-right = stocking.shipping_cost.to_s(:delimited)
-        td.text-right = stocking.use_points.to_s(:delimited)
-        td.text-right.red_text = stocking.purchasing_cost.to_s(:delimited)
+        td.text-right = stocking.purchase_price_text
+        td.text-right = stocking.shipping_cost_text
+        td.text-right = stocking.use_points_text
+        td.text-right.red_text = stocking.purchasing_cost_text
         td = stocking.purchase_place_text
         td = stocking.payment_type_text
         = render partial: 'parts/edit_delete_link', locals: {edit_path: edit_stocking_path(stocking), delete_path: stocking}

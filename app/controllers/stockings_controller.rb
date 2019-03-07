@@ -4,9 +4,22 @@ class StockingsController < ApplicationController
 
   def index
     @q = Stocking.ransack(params[:q])
-    @stockings_total = params[:q].present? && params[:q][:stock] == '1' ? @q.result(distinct: true) : @q.result
-    @stockings_q = @stockings_total.order(purchase_date: :desc).page(params[:page]).per(10)
-    @stockings = StockingDecorator.decorate_collection(@stockings_q)
+    result = params[:q].present? && params[:q][:stock] == '1' ? @q.result(distinct: true) : @q.result
+    @stockings_q = result.order(purchase_date: :desc).page(params[:page]).per(10)
+    @stockings = StockingsDecorator.decorate(@stockings_q)
+
+    # @stockings_total = params[:q].present? && params[:q][:stock] == '1' ? @q.result(distinct: true) : @q.result
+    s = Stocking.arel_table
+    @stockings_total =
+      result.select(
+        s[:purchase_price].count().as('count'),
+        s[:purchase_price].sum.as('purchase_price'),
+        s[:shipping_cost].sum.as('shipping_cost'),
+        s[:use_points].sum.as('use_points'),
+        s[:purchasing_cost].sum.as('purchasing_cost'),
+        s[:purchase_place].sum.as('purchase_place'),
+        s[:payment_type].sum.as('payment_type'),
+      ).all[0].decorate
   end
 
   def new

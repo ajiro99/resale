@@ -11,10 +11,19 @@ class DashBoardController < ApplicationController
                                      sp[:estimated_price].sum.as('estimated_price'),
                                    ).decorate
 
+    # 今月の仕入
+    s = Stocking.arel_table
     @stocking_of_this_months = Stocking.this_month
+                                       .group(:purchase_place)
+                                       .select(
+                                         s[:purchase_place],
+                                         s[:purchase_place].count().as('count'),
+                                         s[:use_points].sum.as('use_points'),
+                                         s[:purchasing_cost].sum.as('purchasing_cost')
+                                       ).decorate
 
-    s = Sale.arel_table
     # 今月の売上
+    s = Sale.arel_table
     @sale_of_this_months = Sale.this_month.without_account(:other)
                                .group(:account)
                                .select(

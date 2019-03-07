@@ -15,22 +15,6 @@ class Stocking < ApplicationRecord
     yahoo_auctions: 1, mercari: 2, rakuten: 3, yahoo_shopping: 4, kitamura: 20, hard_off: 21, other: 0
   }, scope: true
 
-  def self.total_purchase_price
-    sum(:purchase_price).to_s(:delimited)
-  end
-
-  def self.total_shipping_cost
-    sum(:shipping_cost).to_s(:delimited)
-  end
-
-  def self.total_use_point
-    sum(:use_points).to_s(:delimited)
-  end
-
-  def self.purchasing_cost
-    sum(:purchasing_cost).to_s(:delimited)
-  end
-
   def self.ransackable_scopes(auth_object = nil)
     %i[stock]
   end
