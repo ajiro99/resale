@@ -1,34 +1,52 @@
 class DashBoardController < ApplicationController
   def index
-    @total_stocks = StockingProduct.in_stock
+    # 在庫
+    sp = StockingProduct.arel_table
+    p = Product.arel_table
+    @total_stocks = StockingProduct.in_stock.joins(:product)
+                                   .group('products.type')
+                                   .select(
+                                     p[:type].as('product_type'),
+                                     sp[:estimated_price].count().as('count'),
+                                     sp[:estimated_price].sum.as('estimated_price'),
+                                   ).decorate
+
     @stocking_of_this_months = Stocking.this_month
-    @sale_of_this_months = SalesDecorator.decorate(Sale.this_month)
 
-    j = Sale.arel_table
-    sale_of_this_year = Sale.this_year
-    @sale_of_this_year = SalesDecorator.decorate(sale_of_this_year)
-    @sale_of_monthly = SaleDecorator.decorate_collection(
-      sale_of_this_year.group('strftime("%Y", sales_date)')
-      .group('strftime("%m", sales_date)')
-      .select(
-        j[:selling_price].sum.as('selling_price'),
-        j[:profit].sum.as('profit'),
-        j[:sales_date]
-      )
-    )
+    s = Sale.arel_table
+    # 今月の売上
+    @sale_of_this_months = Sale.this_month.without_account(:other)
+                               .group(:account)
+                               .select(
+                                 s[:account],
+                                 s[:account].count().as('count'),
+                                 s[:selling_price].sum.as('selling_price'),
+                                 s[:profit].sum.as('profit')
+                               ).decorate
 
+    # 月別の売上
+    @sale_of_monthly = Sale.this_year
+                           .group('strftime("%Y", sales_date)')
+                           .group('strftime("%m", sales_date)')
+                           .select(
+                             s[:selling_price].sum.as('selling_price'),
+                             s[:profit].sum.as('profit'),
+                             s[:sales_date],
+                             s[:sales_date].count().as('count')
+                           ).decorate
+
+    # 年別の売上
     @sale_of_by_year = SaleDecorator.decorate_collection(
       Sale.group('strftime("%Y", sales_date)')
       .select(
-        j[:selling_price].sum.as('selling_price'),
-        j[:profit].sum.as('profit'),
-        j[:sales_date]
+        s[:selling_price].sum.as('selling_price'),
+        s[:profit].sum.as('profit'),
+        s[:sales_date],
+        s[:sales_date].count().as('count')
       )
     )
 
-    @all_sales = SaleDecorator.decorate_collection(Sale.all)
-
-    sales = Sale.where('sales_date >= ? ', '2019-01-01 00:00:00')
+    sales = Sale.target_aggregation
     @week_count = Array.new(7, 0)
     @day_count = Array.new(31, 0)
 

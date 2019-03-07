@@ -55,6 +55,14 @@ class SaleDecorator < Draper::Decorator
     to_percentage(profit, selling_price)
   end
 
+  def count_text
+    "合計　#{count}個"
+  end
+
+  def account_text
+    I18n.t("enumerize.sale.account.#{Sale.account.find_value(sale.account)}")
+  end
+
   private
 
   def to_delimited(column)

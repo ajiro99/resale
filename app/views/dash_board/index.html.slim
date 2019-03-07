@@ -2,31 +2,26 @@ br
 .grid-x.grid-margin-x
   .cell.medium-4
     .callout
-      p.fi-yen == @sale_of_this_months.this_month_progress
+      p.fi-yen = @sale_of_this_months.this_month_progress
       table
         thead
           tr
-            th
+            th.text-right アカウント
             th.text-right 個数
             th.text-right 売上
             th.text-right 利益
             th.text-right 利益率
         tbody.text-right
-          tr
-            td = I18n.t('enumerize.sale.account.main')
-            td = @sale_of_this_months.with_account_main_size
-            td = @sale_of_this_months.with_account_main_total_selling_price
-            td = @sale_of_this_months.with_account_main_total_profit
-            td = @sale_of_this_months.with_account_main_total_profit_rate
-          tr
-            td = I18n.t('enumerize.sale.account.sub')
-            td = @sale_of_this_months.with_account_sub_size
-            td = @sale_of_this_months.with_account_sub_total_selling_price
-            td = @sale_of_this_months.with_account_sub_total_profit
-            td = @sale_of_this_months.with_account_sub_total_profit_rate
+          - @sale_of_this_months.each do |sale|
+            tr
+              td = sale.account_text
+              td = sale.count
+              td = sale.selling_price_text
+              td = sale.profit_text
+              td = sale.profit_rate_text
           tr
             td 合計
-            td = @sale_of_this_months.size
+            td = @sale_of_this_months.total_count
             td = @sale_of_this_months.total_selling_price
             td.red_text = @sale_of_this_months.total_profit
             td.red_text = @sale_of_this_months.total_profit_rate
@@ -37,21 +32,18 @@ br
       table
         thead
           tr
-            th
+            th.text-right 種類
             th.text-right 個数
             th.text-right 原価
         tbody.text-right
-          tr
-            td ボディ
-            td = @total_stocks.body.size
-            td = @total_stocks.body.total_estimated_price
-          tr
-            td レンズ
-            td = @total_stocks.lense.size
-            td = @total_stocks.lense.total_estimated_price
+          - @total_stocks.each do |stock|
+            tr
+              td = stock.product_type_text
+              td = stock.count
+              td = stock.estimated_price_text
           tr
             td 合計
-            td = @total_stocks.size
+            td = @total_stocks.total_count
             td.red_text = @total_stocks.total_estimated_price
 
   .cell.medium-4
@@ -60,29 +52,35 @@ br
       table
         thead
           tr
-            th
+            th.text-right 仕入先
             th.text-right 回数
-            th.text-right 購入額
+            th.text-right ポイント利用
+            th.text-right 仕入値
         tbody.text-right
           tr
             td = I18n.t('enumerize.stocking.purchase_place.yahoo_auctions')
             td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).size
+            td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).total_use_point
             td = @stocking_of_this_months.with_purchase_place(:yahoo_auctions).purchasing_cost
           tr
             td = I18n.t('enumerize.stocking.purchase_place.mercari')
             td = @stocking_of_this_months.with_purchase_place(:mercari).size
+            td = @stocking_of_this_months.with_purchase_place(:mercari).total_use_point
             td = @stocking_of_this_months.with_purchase_place(:mercari).purchasing_cost
           tr
             td = I18n.t('enumerize.stocking.purchase_place.kitamura')
             td = @stocking_of_this_months.with_purchase_place(:kitamura).size
+            td = @stocking_of_this_months.with_purchase_place(:kitamura).total_use_point
             td = @stocking_of_this_months.with_purchase_place(:kitamura).purchasing_cost
           tr
             td その他
             td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).size
+            td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).total_use_point
             td = @stocking_of_this_months.without_purchase_place(:yahoo_auctions, :mercari, :kitamura).purchasing_cost
           tr
             td 合計
             td = @stocking_of_this_months.size
+            td = @stocking_of_this_months.total_use_point
             td.red_text = @stocking_of_this_months.purchasing_cost
 
 .grid-x.grid-margin-x
@@ -93,6 +91,7 @@ br
         thead
           tr
             th.text-right 月
+            th.text-right 個数
             th.text-right 売上
             th.text-right 利益
             th.text-right 利益率
@@ -100,14 +99,17 @@ br
           - @sale_of_monthly.each do |sale|
             tr
               td = sale.monthly_sales_date
+              td = sale.count
               td = sale.selling_price_text
               td = sale.profit_text
               td = sale.profit_rate_text
           tr
             td 合計
-            td = @sale_of_this_year.total_selling_price
-            td.red_text = @sale_of_this_year.total_profit
-            td.red_text = @sale_of_this_year.total_profit_rate
+            td = @sale_of_monthly.total_count
+            td = @sale_of_monthly.total_selling_price
+            td.red_text = @sale_of_monthly.total_profit
+            td.red_text = @sale_of_monthly.total_profit_rate
+
 
   .cell.medium-4
     .callout
@@ -128,9 +130,9 @@ br
               td = sale.profit_rate_text
           tr
             td 合計
-            td = @all_sales.total_selling_price
-            td.red_text = @all_sales.total_profit
-            td.red_text = @all_sales.total_profit_rate
+            td = @sale_of_by_year.total_selling_price
+            td.red_text = @sale_of_by_year.total_profit
+            td.red_text = @sale_of_by_year.total_profit_rate
 
   .cell.medium-4
     .callout

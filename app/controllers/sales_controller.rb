@@ -7,9 +7,21 @@ class SalesController < ApplicationController
         :q, sales_date_gteq: Time.zone.now.beginning_of_year.strftime('%Y-%m-%d')
       )
     )
-    @sales_total = SalesDecorator.decorate(@q.result)
     @sales_q = @q.result.order(sales_date: :desc).page(params[:page]).per(10)
-    @sales = SaleDecorator.decorate_collection(@sales_q)
+    @sales = SalesDecorator.decorate(@sales_q)
+
+    s = Sale.arel_table
+    @sales_total =
+      @q.result.select(
+        s[:selling_price].count().as('count'),
+        s[:selling_price].sum.as('stocking_price'),
+        s[:bonus_price].sum.as('bonus_price'),
+        s[:cost].sum.as('cost'),
+        s[:selling_price].sum.as('selling_price'),
+        s[:fee].sum.as('fee'),
+        s[:shipping_cost].sum.as('shipping_cost'),
+        s[:profit].sum.as('profit')
+      ).all[0].decorate
   end
 
   def new

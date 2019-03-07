@@ -10,6 +10,7 @@ class Sale < ApplicationRecord
 
   scope :this_month, -> { where(sales_date: Time.now.all_month) }
   scope :this_year, -> { where(sales_date: Time.now.all_year) }
+  scope :target_aggregation, -> { where('sales_date >= ? ', '2019-01-01 00:00:00') }
 
   extend Enumerize
   enumerize :product_type, in: { lense_kit: 1, body: 2, lense: 3, w_lense_kit: 4, other: 0 }, scope: true

@@ -10,15 +10,15 @@ table
       td
       td
       td
-      td.text-right = "合計　#{@sales_total.size.to_s(:delimited)}個"
-      td.text-right =@sales_total.total_stocking_price
-      td.text-right =@sales_total.total_bonus_price
-      td.text-right.blue_text =@sales_total.total_cost
-      td.text-right.red_text =@sales_total.total_selling_price
-      td.text-right =@sales_total.total_fee
-      td.text-right =@sales_total.total_shipping_cost
-      td.text-right.red_text =@sales_total.total_profit
-      td.text-right =@sales_total.total_profit_rate
+      td.text-right = @sales_total.count_text
+      td.text-right =@sales_total.stocking_price_text
+      td.text-right =@sales_total.bonus_price_text
+      td.text-right.blue_text =@sales_total.cost_text
+      td.text-right.red_text =@sales_total.selling_price_text
+      td.text-right =@sales_total.fee_text
+      td.text-right =@sales_total.shipping_cost_text
+      td.text-right.red_text =@sales_total.profit_text
+      td.text-right =@sales_total.profit_rate_text
       td
       td
 

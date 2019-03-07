@@ -17,8 +17,4 @@ class StockingProduct < ApplicationRecord
   def product_name
     "#{product.name} / #{color} / #{stocking.purchase_date} / #{stocking.purchase_place_text} / #{stocking.product_type_text} / #{estimated_price.to_s(:delimited)}"
   end
-
-  def self.total_estimated_price
-    sum(:estimated_price).to_s(:delimited)
-  end
 end
