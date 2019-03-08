@@ -9,6 +9,10 @@ class SalesDecorator < Draper::CollectionDecorator
     "今月の売上　目標達成率：#{achievement_rate}（#{progress_diff}）"
   end
 
+  def by_year_sales_title
+    "年別の売上　コンテンツ利益：#{(remove_comma(total_profit) - 350_000).to_s(:delimited)}円"
+  end
+
   def total_count
     total(:count)
   end

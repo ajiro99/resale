@@ -9,7 +9,7 @@ class Sale < ApplicationRecord
   accepts_nested_attributes_for :sale_extras, allow_destroy: true, reject_if: :all_blank
 
   scope :this_month, -> { where(sales_date: Time.now.all_month) }
-  scope :this_year, -> { where(sales_date: Time.now.all_year) }
+  scope :this_year, -> { where(sales_date: Time.zone.today.beginning_of_year..Time.zone.today.prev_month.end_of_month) }
   scope :target_aggregation, -> { where('sales_date >= ? ', '2019-01-01 00:00:00') }
 
   extend Enumerize
