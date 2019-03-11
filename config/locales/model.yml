@@ -110,3 +110,10 @@ ja:
         nicon: NICON
         canon: CANON
         sigma: SIGMA
+
+    stocking_product:
+      color:
+        white: ホワイト
+        silver: シルバー
+        black: ブラック
+        red: レッド

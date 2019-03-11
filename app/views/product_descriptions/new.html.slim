@@ -20,6 +20,11 @@ h5 商品説明作成
 
       .grid-x.grid-margin-x
         .cell
+          = label_tag 'カラー'
+          = select :product_description, :color, StockingProduct.color.options
+
+      .grid-x.grid-margin-x
+        .cell
           = label_tag 'レンズ'
           = select :product_description, :lense, options_from_collection_for_select(Lense.all, :id, :name)
 
