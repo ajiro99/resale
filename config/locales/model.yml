@@ -74,6 +74,7 @@ ja:
         rakuten: 楽天
         yahoo_shopping: ヤフーショッピング
         other: その他
+        total: 合計
 
     sale:
       product_type:
@@ -90,6 +91,7 @@ ja:
         main: メイン
         sub: サブ
         other: その他
+        total: 合計
       shipping_type:
         compact_445: 宅急便コンパクト
         post_600: 60サイズ

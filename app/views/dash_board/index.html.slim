@@ -34,7 +34,7 @@ br
             tr
               td = stock.product_type_text
               td = stock.count
-              td = stock.estimated_price_text
+              td.red_text = stock.estimated_price_text
           tr
             td 合計
             td = @total_stocks.total_count
@@ -56,12 +56,7 @@ br
               td = stocking.purchase_place_text
               td = stocking.count
               td = stocking.use_points_text
-              td = stocking.purchasing_cost_text
-          tr
-            td 合計
-            td = @stocking_of_this_months.total_count
-            td = @stocking_of_this_months.total_use_points
-            td.red_text = @stocking_of_this_months.total_purchasing_cost
+              td.red_text = stocking.purchasing_cost_text
 
 .grid-x.grid-margin-x
   .cell.medium-4

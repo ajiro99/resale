@@ -20,6 +20,14 @@ class DashBoardController < ApplicationController
                                          s[:purchase_place].count().as('count'),
                                          s[:use_points].sum.as('use_points'),
                                          s[:purchasing_cost].sum.as('purchasing_cost')
+                                       ).union(
+                                         Stocking.this_month
+                                           .select(
+                                             999,
+                                             s[:purchase_place].count().as('count'),
+                                             s[:use_points].sum.as('use_points'),
+                                             s[:purchasing_cost].sum.as('purchasing_cost')
+                                           )
                                        ).decorate
 
     # 今月の売上
@@ -34,7 +42,7 @@ class DashBoardController < ApplicationController
                                ).union(
                                  Sale.this_month.without_account(:other)
                                      .select(
-                                       99,
+                                       999,
                                        s[:account].count().as('count'),
                                        s[:selling_price].sum.as('selling_price'),
                                        s[:profit].sum.as('profit')
@@ -55,7 +63,7 @@ class DashBoardController < ApplicationController
                                .select(
                                  s[:selling_price].sum.as('selling_price'),
                                  s[:profit].sum.as('profit'),
-                                 0,
+                                 999,
                                  s[:sales_date].count().as('count')
                                )
                            ).decorate
@@ -71,7 +79,7 @@ class DashBoardController < ApplicationController
                              Sale.select(
                                s[:selling_price].sum.as('selling_price'),
                                s[:profit].sum.as('profit'),
-                               0,
+                               999,
                                s[:sales_date].count().as('count')
                              )
                            ).decorate
