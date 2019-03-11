@@ -12,10 +12,12 @@ class SaleDecorator < Draper::Decorator
   end
 
   def monthly_sales_date
+    return '合計'if sales_date == 0
     sales_date.strftime('%-m月')
   end
 
   def year_sales_date
+    return '合計'if sales_date == 0
     sales_date.strftime('%Y年')
   end
 
@@ -60,6 +62,7 @@ class SaleDecorator < Draper::Decorator
   end
 
   def account_text
+    return '合計' if sale.account.blank?
     I18n.t("enumerize.sale.account.#{Sale.account.find_value(sale.account)}")
   end
 

@@ -31,6 +31,14 @@ class DashBoardController < ApplicationController
                                  s[:account].count().as('count'),
                                  s[:selling_price].sum.as('selling_price'),
                                  s[:profit].sum.as('profit')
+                               ).union(
+                                 Sale.this_month.without_account(:other)
+                                     .select(
+                                       99,
+                                       s[:account].count().as('count'),
+                                       s[:selling_price].sum.as('selling_price'),
+                                       s[:profit].sum.as('profit')
+                                     )
                                ).decorate
 
     # 月別の売上
@@ -42,18 +50,31 @@ class DashBoardController < ApplicationController
                              s[:profit].sum.as('profit'),
                              s[:sales_date],
                              s[:sales_date].count().as('count')
+                           ).union(
+                             Sale.this_year
+                               .select(
+                                 s[:selling_price].sum.as('selling_price'),
+                                 s[:profit].sum.as('profit'),
+                                 0,
+                                 s[:sales_date].count().as('count')
+                               )
                            ).decorate
 
     # 年別の売上
-    @sale_of_by_year = SaleDecorator.decorate_collection(
-      Sale.group('strftime("%Y", sales_date)')
-      .select(
-        s[:selling_price].sum.as('selling_price'),
-        s[:profit].sum.as('profit'),
-        s[:sales_date],
-        s[:sales_date].count().as('count')
-      )
-    )
+    @sale_of_by_year = Sale.group('strftime("%Y", sales_date)')
+                           .select(
+                             s[:selling_price].sum.as('selling_price'),
+                             s[:profit].sum.as('profit'),
+                             s[:sales_date],
+                             s[:sales_date].count().as('count')
+                           ).union(
+                             Sale.select(
+                               s[:selling_price].sum.as('selling_price'),
+                               s[:profit].sum.as('profit'),
+                               0,
+                               s[:sales_date].count().as('count')
+                             )
+                           ).decorate
 
     sales = Sale.target_aggregation
     @week_count = Array.new(7, 0)

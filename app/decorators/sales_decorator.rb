@@ -1,32 +1,20 @@
 class SalesDecorator < Draper::CollectionDecorator
+
+  def total_profit
+    object[2].profit
+  end
+
   def this_month_progress
-    profit = remove_comma(total_profit)
-    achievement_rate = to_percentage(profit, 50_000)
+    achievement_rate = to_percentage(total_profit, 50_000)
     progress_diff = ActionController::Base.helpers.number_to_currency(
-      profit - 50_000 / Date.new.end_of_month.mday * Time.zone.now.mday,
-      format: '+%n円', negative_format: '%n円の遅れ'
+      total_profit - 50_000 / Date.new.end_of_month.mday * Time.zone.now.mday,
+      format: '%n円のリード', negative_format: '%n円の遅れ'
     )
     "今月の売上　目標達成率：#{achievement_rate}（#{progress_diff}）"
   end
 
   def by_year_sales_title
-    "年別の売上　コンテンツ利益：#{(remove_comma(total_profit) - 350_000).to_s(:delimited)}円"
-  end
-
-  def total_count
-    total(:count)
-  end
-
-  def total_selling_price
-    total(:selling_price)
-  end
-
-  def total_profit
-    total(:profit)
-  end
-
-  def total_profit_rate
-    to_percentage(remove_comma(total_profit), remove_comma(total_selling_price))
+    "年別の売上　コンテンツ利益：#{(total_profit - 350_000).to_s(:delimited)}円"
   end
 
   def self.select_sale_shipping_types
@@ -54,18 +42,6 @@ class SalesDecorator < Draper::CollectionDecorator
   end
 
   private
-
-  def total(column)
-    total = 0
-    object.map do |sale|
-      total += sale.send(column)
-    end
-    total.to_s(:delimited)
-  end
-
-  def remove_comma(target)
-    target.gsub(/(\d{0,3}),(\d{3})/, '\1\2').to_i
-  end
 
   def to_percentage(target_value, source_value)
     ActionController::Base.helpers.number_to_percentage(
