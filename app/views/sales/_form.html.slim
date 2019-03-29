@@ -36,6 +36,12 @@
         = check_box_tag 'sale[sale_extras_attributes][][extra_id]', extra.id, check_flag, id: "sale_extra_id_#{extra.id}"
         = label_tag "sale_extra_id_#{extra.id}", extra.name
         = hidden_field_tag "sale_extra_price_#{extra.id}", extra.price
+      - unless new_action?
+        - Extra.no_display.all.each do |extra|
+          - check_flag = @sale.sale_extras.any? { |sale_extra| sale_extra.extra_id == extra.id }
+          = check_box_tag 'sale[sale_extras_attributes][][extra_id]', extra.id, check_flag, id: "sale_extra_id_#{extra.id}"
+          = label_tag "sale_extra_id_#{extra.id}", extra.name
+          = hidden_field_tag "sale_extra_price_#{extra.id}", extra.price
 
   .grid-x.grid-margin-x
     .cell.medium-2

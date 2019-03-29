@@ -65,6 +65,7 @@ ja:
         p_one: P_one
         amex: AMEX
         point: ポイント
+        smart_phone_pay: スマホ決済
         cash: 現金
       purchase_place:
         yahoo_auctions: ヤフオク

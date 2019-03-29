@@ -31,7 +31,7 @@ h5 商品説明作成
       .grid-x.grid-margin-x
         .cell
           = label_tag 'おまけ'
-          = collection_check_boxes(:product_description, :extra_ids, Extra.all, :id, :name) do |b|
+          = collection_check_boxes(:product_description, :extra_ids, Extra.display, :id, :name) do |b|
             = b.label { b.check_box + b.text }
 
       = submit_tag '商品説明作成'
