@@ -87,6 +87,7 @@ ja:
       sales_channel:
         mercari: メルカリ
         yahoo_auctions: ヤフオク
+        rakuma: ラクマ
         other: その他
       account:
         main: メイン
@@ -97,6 +98,7 @@ ja:
         compact_445: 宅急便コンパクト
         post_600: 60サイズ
         post_700: 70サイズ
+        rakuma_595: ラクマ宅急便コンパクト
       state:
         new: 新品、未使用
         close_to_unused: 未使用に近い

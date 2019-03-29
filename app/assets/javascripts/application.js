@@ -97,7 +97,11 @@ $(function(){
   });
 
   $(document).on('keyup', "#sale_selling_price", function (){
-      $("#sale_fee").val(parseInt($("#sale_selling_price").val()) * 0.1);
+      if ($("#sale_sales_channel").val() == "rakuma") {
+          $("#sale_fee").val(Math.round(parseInt($("#sale_selling_price").val()) * 0.035));
+      } else {
+          $("#sale_fee").val(parseInt($("#sale_selling_price").val()) * 0.1);
+      }
       $("#sale_sales").val(parseInt($("#sale_selling_price").val()) - parseInt($("#sale_fee").val()) - parseInt($("#sale_shipping_cost").val())).change();
   });
 
@@ -134,5 +138,15 @@ $(function(){
           $("#sale_bonus_price").val(parseInt($("#sale_bonus_price").val()) - parseInt($("#sale_extra_price_" + $(this).val()).val()));
       }
       $('#sale_stocking_price').trigger('keyup');
+  });
+
+  $(document).on('change', "#sale_sales_channel", function (){
+      if ($("#sale_sales_channel").val() == "rakuma") {
+          $("#sale_fee").val(Math.round(parseInt($("#sale_selling_price").val()) * 0.035));
+      } else {
+          $("#sale_fee").val(parseInt($("#sale_selling_price").val()) * 0.1);
+      }
+
+      $("#sale_sales").val(parseInt($("#sale_selling_price").val()) - parseInt($("#sale_fee").val()) - parseInt($("#sale_shipping_cost").val())).change();
   });
 });

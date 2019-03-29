@@ -1,7 +1,7 @@
 class SalesDecorator < Draper::CollectionDecorator
 
   def total_profit
-    object[2].profit
+    object[object.size - 1]&.profit
   end
 
   def this_month_progress

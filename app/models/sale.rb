@@ -14,9 +14,9 @@ class Sale < ApplicationRecord
 
   extend Enumerize
   enumerize :product_type, in: { lense_kit: 1, body: 2, lense: 3, w_lense_kit: 4, other: 0 }, scope: true
-  enumerize :sales_channel, in: { mercari: 1, yahoo_auctions: 2, other: 0 }, scope: true
-  enumerize :account, in: { main: 1, sub: 2, other: 0, total: 999}, scope: true
-  enumerize :shipping_type, in: { compact_445: 445, post_600: 600, post_700: 700 }, scope: true
+  enumerize :sales_channel, in: { mercari: 1, yahoo_auctions: 2, rakuma: 3, other: 0 }, scope: true
+  enumerize :account, in: { main: 1, sub: 2, other: 3, total: 999}, scope: true
+  enumerize :shipping_type, in: { compact_445: 445, post_600: 600, post_700: 700, rakuma_595: 595 }, scope: true
   enumerize :state, in: {
     new: 1, close_to_unused: 2, no_scratch: 3, slightly_scratched: 4, with_scratches: 5, bad_condition: 6
   }, scope: true

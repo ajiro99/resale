@@ -45,6 +45,14 @@
 
   .grid-x.grid-margin-x
     .cell.medium-2
+      = f.label :sales_channel
+      = f.select :sales_channel, Sale.sales_channel.options
+    .cell.medium-2
+      = f.label :account
+      = f.select :account, Sale.account.options
+
+  .grid-x.grid-margin-x
+    .cell.medium-2
       = f.label :stocking_price
       = f.number_field :stocking_price
     .cell.medium-2
@@ -79,12 +87,7 @@
     .cell.medium-3
       = f.label :state
       = f.select :state, Sale.state.options, include_blank: true
-    .cell.medium-2
-      = f.label :sales_channel
-      = f.select :sales_channel, Sale.sales_channel.options
-    .cell.medium-2
-      = f.label :account
-      = f.select :account, Sale.account.options
+
   .grid-x.grid-margin-x
     .cell.medium-4
       = f.label :remarks

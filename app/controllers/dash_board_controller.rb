@@ -32,7 +32,7 @@ class DashBoardController < ApplicationController
 
     # 今月の売上
     s = Sale.arel_table
-    @sale_of_this_months = Sale.this_month.without_account(:other)
+    @sale_of_this_months = Sale.this_month
                                .group(:account)
                                .select(
                                  s[:account],
@@ -40,7 +40,7 @@ class DashBoardController < ApplicationController
                                  s[:selling_price].sum.as('selling_price'),
                                  s[:profit].sum.as('profit')
                                ).union(
-                                 Sale.this_month.without_account(:other)
+                                 Sale.this_month
                                      .select(
                                        999,
                                        s[:account].count().as('count'),
