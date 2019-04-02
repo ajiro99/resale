@@ -1,7 +1,7 @@
 class SalesDecorator < Draper::CollectionDecorator
 
   def total_profit
-    object[object.size - 1]&.profit
+    object[object.size - 1]&.profit.presence || 0
   end
 
   def this_month_progress
@@ -44,6 +44,7 @@ class SalesDecorator < Draper::CollectionDecorator
   private
 
   def to_percentage(target_value, source_value)
+    return if target_value.blank?
     ActionController::Base.helpers.number_to_percentage(
       target_value.fdiv(source_value) * 100, precision: 2
     )

@@ -58,14 +58,6 @@ class DashBoardController < ApplicationController
                              s[:profit].sum.as('profit'),
                              s[:sales_date],
                              s[:sales_date].count().as('count')
-                           ).union(
-                             Sale.this_year
-                               .select(
-                                 s[:selling_price].sum.as('selling_price'),
-                                 s[:profit].sum.as('profit'),
-                                 999,
-                                 s[:sales_date].count().as('count')
-                               )
                            ).decorate
 
     # 年別の売上
