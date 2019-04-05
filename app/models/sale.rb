@@ -1,4 +1,5 @@
 class Sale < ApplicationRecord
+  require 'csv'
   include ActionView::Helpers::NumberHelper
 
   attr_accessor :target_body
@@ -20,4 +21,16 @@ class Sale < ApplicationRecord
   enumerize :state, in: {
     new: 1, close_to_unused: 2, no_scratch: 3, slightly_scratched: 4, with_scratches: 5, bad_condition: 6
   }, scope: true
+
+  def self.to_csv sales
+    CSV.generate do |csv|
+      csv << %i(販売日時 商品タイプ 商品名 売上 手数料 送料 利益)
+      sales.each do |sale|
+        csv << [
+          sale.sales_date, sale.product_type_text, sale.product_name.gsub('<br>', ' '),
+          sale.selling_price, sale.fee, sale.shipping_cost, sale.profit
+        ]
+      end
+    end
+  end
 end

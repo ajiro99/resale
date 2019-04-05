@@ -3,6 +3,7 @@ h5 売上一覧
 = render 'search_form'
 
 = link_to '登録', new_sale_path, class: 'button'
+= link_to 'csv', sales_path(params.merge(format: :csv).permit!), target: '_blank', class: 'button secondary'
 
 table
   tbody

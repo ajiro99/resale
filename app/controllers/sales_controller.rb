@@ -22,6 +22,15 @@ class SalesController < ApplicationController
         s[:shipping_cost].sum.as('shipping_cost'),
         s[:profit].sum.as('profit')
       ).all[0].decorate
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Sale.to_csv(
+          SalesDecorator.decorate(@q.result.order(sales_date: :desc))
+        ), filename: "sale_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv", type: :csv
+      end
+    end
   end
 
   def new
