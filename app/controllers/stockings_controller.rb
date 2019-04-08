@@ -19,6 +19,15 @@ class StockingsController < ApplicationController
         s[:purchase_place].sum.as('purchase_place'),
         s[:payment_type].sum.as('payment_type'),
       ).all[0].decorate
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Stocking.to_csv(
+          StockingsDecorator.decorate(@q.result.order(purchase_date: :desc))
+        ), filename: "stocking_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv", type: :csv
+      end
+    end
   end
 
   def new

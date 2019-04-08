@@ -26,9 +26,11 @@ class Sale < ApplicationRecord
     CSV.generate do |csv|
       csv << %i(販売日時 商品タイプ 商品名 売上 手数料 送料 利益)
       sales.each do |sale|
+        shipping_cost = Sale.first.shipping_cost - 65 if Sale.first.shipping_type.compact_445?
+        profit = sale.selling_price - sale.fee - shipping_cost
         csv << [
           sale.sales_date, sale.product_type_text, sale.product_name.gsub('<br>', ' '),
-          sale.selling_price, sale.fee, sale.shipping_cost, sale.profit
+          sale.selling_price, sale.fee, shipping_cost, profit
         ]
       end
     end

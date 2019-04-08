@@ -19,6 +19,18 @@ class Stocking < ApplicationRecord
     %i[stock]
   end
 
+  def self.to_csv stockings
+    CSV.generate do |csv|
+      csv << %i(購入日時 商品タイプ 商品名 販売価格 送料 ポイント利用 購入金額)
+      stockings.each do |stocking|
+        csv << [
+          stocking.purchase_date, stocking.product_type_text, stocking.product_name.gsub('<br>', ' ').gsub("<li class='fi-shopping-cart stock'></li>", ''),
+          stocking.purchase_price, stocking.shipping_cost, stocking.use_points, stocking.purchasing_cost
+        ]
+      end
+    end
+  end
+
   private
 
   def check_saled
