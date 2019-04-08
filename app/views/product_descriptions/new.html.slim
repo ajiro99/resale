@@ -34,6 +34,11 @@ h5 商品説明作成
           = collection_check_boxes(:product_description, :extra_ids, Extra.display, :id, :name) do |b|
             = b.label { b.check_box + b.text }
 
+      .grid-x.grid-margin-x
+        .cell
+          = label_tag '価格'
+          = text_field :product_description, :price
+
       = submit_tag '商品説明作成'
 
   / .cell.medium-7

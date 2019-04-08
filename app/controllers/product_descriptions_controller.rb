@@ -37,6 +37,7 @@ class ProductDescriptionsController < ApplicationController
       ).map do |extra|
         "・#{extra.name}【新品】"
       end
+    price = product_description[:price]
 
     title = Template.with_category(product_description[:category]).first.title.gsub('%body%', body_name)
     description = Template.with_category(product_description[:category]).first.description
@@ -50,7 +51,7 @@ class ProductDescriptionsController < ApplicationController
 
     description = description.gsub('❤️', '⭐️') if product_description[:account] == Sale.account.find_value(:sub)
 
-    exhibition(title, description)
+    exhibition(title, description, price)
     render :new
   end
 
@@ -58,10 +59,10 @@ class ProductDescriptionsController < ApplicationController
 
   def product_description_params
     params.require(:product_description)
-          .permit(:account, :category, :body, :color, :lense, extra_ids: [])
+          .permit(:account, :category, :body, :color, :lense, :price, extra_ids: [])
   end
 
-  def exhibition(title, description)
+  def exhibition(title, description, price)
     caps = Selenium::WebDriver::Remote::Capabilities.chrome(
       chromeOptions: {
         args: ['--user-data-dir=/Users/enechange/Library/Application\ Support/Google/Chrome/']
@@ -105,6 +106,36 @@ class ProductDescriptionsController < ApplicationController
 
     # 発送までの日数
     set_select_box(select[4], '2')
+
+    get_input_tags(driver)[2].send_keys(price)
+
+    # ラクマ
+    driver.execute_script('window.open()')
+    driver.switch_to.window(driver.window_handles[1])
+    driver.get('https://fril.jp/item/new')
+
+    # カテゴリ
+    driver.find_element(:id, 'category_name').click
+    driver.find_element(:css, "#select-category > div > div > div.modal-body > div > div:nth-child(9) > a").click
+    sleep 0.5
+    driver.find_element(:css, "#menu_8 > div:nth-child(4) > a").click
+    sleep 0.5
+    driver.find_element(:css, "#menu_8_3 > a:nth-child(1)").click
+
+    # ブランド
+    driver.find_element(:id, 'brand_name').click
+    driver.find_element(:id, 'brand-search-text').send_keys('オリンパス')
+    driver.find_element(:css, "#select-brand > div > div > div.modal-body > div > div > div.brand-all-list > div > ul > li > a").click
+
+    # 状態
+    driver.find_element(:css, "#status > option:nth-child(3)").click
+
+    # 配送方法
+    driver.find_element(:id, 'delivery_method').click
+    driver.find_element(:css, "#select-delivery-method > div > div > div.modal-body > div > div:nth-child(3)").click
+
+    # 価格
+    driver.find_element(:id, 'sell_price').send_keys((price.to_i * 0.95).floor)
   end
 
   def get_input_tags(driver)
