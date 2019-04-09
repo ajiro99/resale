@@ -2,7 +2,8 @@ br
 .grid-x.grid-margin-x
   .cell.medium-4
     .callout
-      p.fi-yen = @sale_of_this_months.this_month_progress
+      .label.fi-yen.dash_board_label 今月の売上
+      span = @sale_of_this_months.this_month_progress
       table
         thead
           tr
@@ -22,7 +23,7 @@ br
 
   .cell.medium-3
     .callout
-      p.fi-shopping-cart 在庫
+      .label.fi-shopping-cart.dash_board_label 在庫
       table
         thead
           tr
@@ -34,15 +35,15 @@ br
             tr
               td = stock.product_type_text
               td = stock.count
-              td.red_text = stock.estimated_price_text
+              td = stock.estimated_price_text
           tr
             td 合計
             td = @total_stocks.total_count
-            td.red_text = @total_stocks.total_estimated_price
+            td = @total_stocks.total_estimated_price
 
   .cell.medium-4
     .callout
-      p.fi-results 今月の仕入
+      .label.fi-results.dash_board_label 今月の仕入
       table
         thead
           tr
@@ -56,12 +57,12 @@ br
               td = stocking.purchase_place_text
               td = stocking.count
               td = stocking.use_points_text
-              td.red_text = stocking.purchasing_cost_text
+              td = stocking.purchasing_cost_text
 
 .grid-x.grid-margin-x
   .cell.medium-4
     .callout
-      p.fi-yen 月別の売上
+      .label.fi-yen.dash_board_label 月別の売上
       table
         thead
           tr
@@ -81,7 +82,8 @@ br
 
   .cell.medium-4
     .callout
-      p.fi-yen = @sale_of_by_year.by_year_sales_title
+      .label.fi-yen.dash_board_label 年別の売上
+      span = @sale_of_by_year.by_year_sales_title
       table
         thead
           tr
@@ -99,7 +101,8 @@ br
 
   .cell.medium-4
     .callout
-      p.fi-yen 曜日毎の販売数（2019年〜）
+      .label.fi-calendar.dash_board_label 曜日毎の販売数
+      span （2019年〜）
       table
         thead
           tr
@@ -120,7 +123,8 @@ br
 
   .cell.medium-9
     .callout
-      p.fi-yen 日付毎の販売数（2019年〜）
+      .label.fi-calendar.dash_board_label 日付毎の販売数
+      span （2019年〜）
       table.unstriped
         thead
           tr
@@ -153,7 +157,7 @@ br
 
   .cell.medium-3
     .callout
-      p.fi-link Link
+      .label.fi-link.dash_board_label Link
       li = link_to 'メルカリ（マイページ）', 'https://www.mercari.com/jp/mypage/', target: '_blank'
       li = link_to 'ヤフオク（検索）', 'https://auctions.yahoo.co.jp/search/search?n=100&p=e-pl+%E3%83%80%E3%83%96%E3%83%AB&va=e-pl+%E3%83%80%E3%83%96%E3%83%AB&fixed=2&exflg=1&b=1&s1=new&o1=d', target: '_blank'
       li = link_to 'ヤフオク（支払い一覧）', 'https://details.payment.yahoo.co.jp/PaymentDetailList', target: '_blank'

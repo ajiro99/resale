@@ -22,3 +22,14 @@ li.stock {
     display: inline-block;
     color: #ff0000;
 }
+
+.dash_board_label {
+    font-size: 100%;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    background-color: #43ac6a;
+}
+
+.my-color{
+    background-color:#555555;
+}

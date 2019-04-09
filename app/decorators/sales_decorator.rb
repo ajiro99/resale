@@ -10,11 +10,11 @@ class SalesDecorator < Draper::CollectionDecorator
       total_profit - 50_000 / Date.new.end_of_month.mday * Time.zone.now.mday,
       format: '%n円のリード', negative_format: '%n円の遅れ'
     )
-    "今月の売上　目標達成率：#{achievement_rate}（#{progress_diff}）"
+    " 目標達成率：#{achievement_rate}（#{progress_diff}）"
   end
 
   def by_year_sales_title
-    "年別の売上　コンテンツ利益：#{(total_profit - 350_000).to_s(:delimited)}円"
+    " コンテンツ利益：#{(total_profit - 350_000).to_s(:delimited)}円"
   end
 
   def self.select_sale_shipping_types
