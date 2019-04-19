@@ -61,19 +61,19 @@ class SaleDecorator < Draper::Decorator
     "合計　#{count}個"
   end
 
-  def sale_of_monthly_total_count(size)
+  def sale_of_monthly_average_count(size)
     count / size
   end
 
-  def sale_of_monthly_total_selling_price(size)
+  def sale_of_monthly_average_selling_price(size)
     to_delimited(selling_price / size)
   end
 
-  def sale_of_monthly_total_profit(size)
+  def sale_of_monthly_average_profit(size)
     to_delimited(profit / size)
   end
 
-  def sale_of_monthly_total_profit_rate
+  def sale_of_monthly_average_profit_rate
     to_percentage(profit, selling_price)
   end
 

@@ -83,10 +83,10 @@ br
           - @sale_of_monthly_total.each do |sale|
             tr
               td 平均
-              td = sale.sale_of_monthly_total_count(@sale_of_monthly.size)
-              td = sale.sale_of_monthly_total_selling_price(@sale_of_monthly.size)
-              td.red_text = sale.sale_of_monthly_total_profit(@sale_of_monthly.size)
-              td = sale.sale_of_monthly_total_profit_rate
+              td = sale.sale_of_monthly_average_count(@sale_of_monthly.size)
+              td = sale.sale_of_monthly_average_selling_price(@sale_of_monthly.size)
+              td.red_text = sale.sale_of_monthly_average_profit(@sale_of_monthly.size)
+              td = sale.sale_of_monthly_average_profit_rate
 
   .cell.medium-4
     .callout
