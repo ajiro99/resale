@@ -24,6 +24,7 @@ br
   .cell.medium-3
     .callout
       .label.fi-shopping-cart.dash_board_label 在庫
+      span = @total_stocks.oldest_stock
       table
         thead
           tr
@@ -79,6 +80,13 @@ br
               td = sale.selling_price_text
               td.red_text = sale.profit_text
               td = sale.profit_rate_text
+          - @sale_of_monthly_total.each do |sale|
+            tr
+              td 平均
+              td = sale.sale_of_monthly_total_count(@sale_of_monthly.size)
+              td = sale.sale_of_monthly_total_selling_price(@sale_of_monthly.size)
+              td.red_text = sale.sale_of_monthly_total_profit(@sale_of_monthly.size)
+              td = sale.sale_of_monthly_total_profit_rate
 
   .cell.medium-4
     .callout

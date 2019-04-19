@@ -60,6 +60,13 @@ class DashBoardController < ApplicationController
                              s[:sales_date].count().as('count')
                            ).decorate
 
+    @sale_of_monthly_total = Sale.this_year
+                                 .select(
+                                   s[:selling_price].sum.as('selling_price'),
+                                   s[:profit].sum.as('profit'),
+                                   s[:profit].count().as('count')
+                                 ).decorate
+
     # 年別の売上
     @sale_of_by_year = Sale.group('strftime("%Y", sales_date)')
                            .select(

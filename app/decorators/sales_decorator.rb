@@ -8,7 +8,7 @@ class SalesDecorator < Draper::CollectionDecorator
     achievement_rate = to_percentage(total_profit, 50_000)
     progress_diff = ActionController::Base.helpers.number_to_currency(
       total_profit - 50_000 / Date.new.end_of_month.mday * Time.zone.now.mday,
-      format: '%n円のリード', negative_format: '%n円の遅れ'
+      format: '%n円の進捗', negative_format: '%n円の遅れ'
     )
     " 目標達成率：#{achievement_rate}（#{progress_diff}）"
   end
