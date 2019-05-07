@@ -64,6 +64,7 @@ ja:
         yahoo: Yahooカード
         p_one: P_one
         amex: AMEX
+        kyash: KYASH
         point: ポイント
         smart_phone_pay: スマホ決済
         cash: 現金
@@ -112,7 +113,7 @@ ja:
         olympus: OLYMPUS
         nicon: NICON
         canon: CANON
-        sigma: SIGMA
+        panasonic: PANASONIC
 
     stocking_product:
       color:
@@ -120,3 +121,4 @@ ja:
         silver: シルバー
         black: ブラック
         red: レッド
+        orange: オレンジ

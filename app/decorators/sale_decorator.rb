@@ -12,12 +12,12 @@ class SaleDecorator < Draper::Decorator
   end
 
   def monthly_sales_date
-    return '合計'if sales_date == 999
+    return '合計' if sales_date == 999
     sales_date.strftime('%-m月')
   end
 
   def year_sales_date
-    return '合計'if sales_date == 999
+    return '合計' if sales_date == 999
     sales_date.strftime('%Y年')
   end
 

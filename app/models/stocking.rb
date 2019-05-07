@@ -10,7 +10,7 @@ class Stocking < ApplicationRecord
 
   extend Enumerize
   enumerize :product_type, in: { lense_kit: 1, body: 2, lense: 3, w_lense_kit: 4, other: 0 }, scope: true
-  enumerize :payment_type, in: { yahoo: 1, p_one: 2, amex: 3, point: 4, smart_phone_pay: 5, cash: 0 }, scope: true
+  enumerize :payment_type, in: { yahoo: 1, p_one: 2, amex: 3, point: 4, smart_phone_pay: 5, kyash: 6, cash: 0 }, scope: true
   enumerize :purchase_place, in: {
     yahoo_auctions: 1, mercari: 2, rakuten: 3, yahoo_shopping: 4, kitamura: 20, hard_off: 21, other: 0, total: 999
   }, scope: true

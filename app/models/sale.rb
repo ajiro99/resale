@@ -6,7 +6,7 @@ class Sale < ApplicationRecord
   attr_accessor :target_lense_1
   attr_accessor :target_lense_2
   has_many :stocking_products
-  has_many :sale_extras
+  has_many :sale_extras, dependent: :destroy
   accepts_nested_attributes_for :sale_extras, allow_destroy: true, reject_if: :all_blank
 
   scope :this_month, -> { where(sales_date: Time.now.all_month) }

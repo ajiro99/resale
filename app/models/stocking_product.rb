@@ -4,7 +4,7 @@ class StockingProduct < ApplicationRecord
   belongs_to :sale, optional: true
 
   extend Enumerize
-  enumerize :color, in: { white: 1, silver: 2, black: 3, red: 4 }, scope: true
+  enumerize :color, in: { white: 1, silver: 2, black: 3, red: 4, orange: 5 }, scope: true
 
   scope :in_stock, -> { where(sale_id: nil).where.not(product_id: nil) }
   scope :body, -> { joins(:product).where('products.type = ?', 'Body').order(:product_id, :color) }
