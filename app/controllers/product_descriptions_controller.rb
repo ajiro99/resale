@@ -102,10 +102,10 @@ class ProductDescriptionsController < ApplicationController
     set_select_box(select_4[5], '14')
 
     # 発送元の地域
-    set_select_box(select[3], '13')
+    set_select_box(select[3], '14')
 
     # 発送までの日数
-    set_select_box(select[4], '2')
+    set_select_box(select[4], '1')
 
     get_input_tags(driver)[2].send_keys(price)
 

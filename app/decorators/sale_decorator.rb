@@ -73,8 +73,16 @@ class SaleDecorator < Draper::Decorator
     to_delimited(profit / size)
   end
 
+  def sale_of_monthly_average_unit_profit
+    to_delimited(profit / count)
+  end
+
   def sale_of_monthly_average_profit_rate
     to_percentage(profit, selling_price)
+  end
+
+  def unit_profit_text
+    to_delimited(profit / count)
   end
 
   private

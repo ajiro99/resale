@@ -72,6 +72,7 @@ br
             th.text-right 個数
             th.text-right 売上
             th.text-right 利益
+            th.text-right 平均<br>利益
             th.text-right 利益率
         tbody.text-right
           - @sale_of_monthly.each do |sale|
@@ -80,6 +81,7 @@ br
               td = sale.count
               td = sale.selling_price_text
               td.red_text = sale.profit_text
+              td = sale.unit_profit_text
               td = sale.profit_rate_text
           - @sale_of_monthly_total.each do |sale|
             tr
@@ -87,6 +89,7 @@ br
               td = sale.sale_of_monthly_average_count(@sale_of_monthly.size)
               td = sale.sale_of_monthly_average_selling_price(@sale_of_monthly.size)
               td.red_text = sale.sale_of_monthly_average_profit(@sale_of_monthly.size)
+              td = sale.sale_of_monthly_average_unit_profit
               td = sale.sale_of_monthly_average_profit_rate
 
   .cell.medium-4

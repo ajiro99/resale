@@ -5,7 +5,7 @@ class StockingsController < ApplicationController
   def index
     @q = Stocking.ransack(params[:q])
     result = params[:q].present? && params[:q][:stock] == '1' ? @q.result(distinct: true) : @q.result
-    @stockings_q = result.order(purchase_date: :desc).page(params[:page]).per(10)
+    @stockings_q = result.order(purchase_date: :desc).page(params[:page]).per(20)
     @stockings = StockingsDecorator.decorate(@stockings_q)
 
     s = Stocking.arel_table
