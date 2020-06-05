@@ -69,13 +69,16 @@ ja:
         smart_phone_pay: スマホ決済
         cash: 現金
         rakuten: 楽天
+        other: その他
       purchase_place:
         yahoo_auctions: ヤフオク
         mercari: メルカリ
         kitamura: カメラのキタムラ
         hard_off: ハードオフ
         rakuten: 楽天
+        amazon: Amazon
         yahoo_shopping: ﾔﾌｰｼｮｯﾋﾟﾝｸﾞ
+        rakuma: ラクマ
         other: その他
         total: 合計
 

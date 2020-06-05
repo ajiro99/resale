@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   get 'product_description' => 'product_descriptions#new'
   post 'product_description' => 'product_descriptions#create'
+
+  get 'face_book_auto_post' => 'face_books#auto_post'
 end

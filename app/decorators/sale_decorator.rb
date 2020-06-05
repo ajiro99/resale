@@ -62,18 +62,26 @@ class SaleDecorator < Draper::Decorator
   end
 
   def sale_of_monthly_average_count(size)
+    return 0 if size.zero?
+
     count / size
   end
 
   def sale_of_monthly_average_selling_price(size)
+    return 0 if size.zero?
+
     to_delimited(selling_price / size)
   end
 
   def sale_of_monthly_average_profit(size)
+    return 0 if size.zero?
+
     to_delimited(profit / size)
   end
 
   def sale_of_monthly_average_unit_profit
+    return 0 if count.zero?
+
     to_delimited(profit / count)
   end
 

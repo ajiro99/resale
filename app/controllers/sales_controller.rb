@@ -4,7 +4,7 @@ class SalesController < ApplicationController
   def index
     @q = Sale.ransack(
       params.fetch(
-        :q, sales_date_gteq: Time.zone.now.beginning_of_year.strftime('%Y-%m-%d')
+        :q, sales_date_gteq: '2019-01-01'#Time.zone.now.beginning_of_year.strftime('%Y-%m-%d')
       )
     )
     @sales_q = @q.result.order(sales_date: :desc).page(params[:page]).per(10)

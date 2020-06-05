@@ -1,5 +1,5 @@
 require 'selenium-webdriver'
-class ProductDescriptionsController < ApplicationController
+class FaceBooksController < ApplicationController
 
   RECOMMEND = %w(・Wi-FiSDカード付きでスマホに転送できる♪
                  ・6000円相当のおまけ付きでお得♪
@@ -17,11 +17,111 @@ class ProductDescriptionsController < ApplicationController
                ・CDロム
                ・フラッシュ
                ・充電器
+               ・充電器ケーブル
                ・バッテリー
                ・USBケーブル
-               ・AVケーブル).join("\n")
+               ・AVケーブル
+               ・元箱).join("\n")
 
-  def new ;end
+  WB = "こんばんは✴︎突然ですが、
+
+皆さんは携帯代って毎月どのくらい支払ってますか？
+わたしは今まで1万円以上払ってました
+年間で10万円以上の支出
+
+携帯代って意外とバカにならないですよね
+
+けれど、もし次の3つの選択肢があって好きなものを選べるならあなたは何番がいいですか？
+=========================
+①そのまま一生支払い続ける
+
+②携帯代を節約する
+
+③携帯代を節約して、かつ収入にする
+＝携帯代を支払う側からもらう側に
+=========================
+.
+.
+これを見てわたしは迷わず③を選びました
+
+その結果、
+
+毎月1万以上払ってたのが
+
+今では毎月もらえています
+
+
+この話を知ってるか知らないかで、
+あなたの今後の人生も大きく変わってきます
+
+
+あなただったらどれが良いですか？
+.
+.
+.
+③の方法を知りたい！
+
+という方は、ご連絡ください。"
+
+  URLS = %w(https://www.facebook.com/groups/535507933586699
+           https://www.facebook.com/groups/295679260853194/
+           https://www.facebook.com/groups/1819300648364815/?ref=group_browse
+           https://www.facebook.com/groups/1712465759019609/?ref=group_browse
+           https://www.facebook.com/groups/1675328325909268/?ref=group_browse
+           https://www.facebook.com/groups/1512676922361739/?ref=group_browse
+           https://www.facebook.com/groups/1486105884855433/?ref=group_browse
+           https://www.facebook.com/groups/1480458418924806/?ref=group_browse
+           https://www.facebook.com/groups/1226872280668843/?ref=group_browse
+           https://www.facebook.com/groups/1100326296646640/?ref=group_browse
+           https://www.facebook.com/groups/573564399734119/?ref=group_browse
+           https://www.facebook.com/groups/509409016127258/?ref=group_browse
+           https://www.facebook.com/groups/357282501144625/?ref=group_browse
+           https://www.facebook.com/groups/347688375427314/?ref=group_browse
+           https://www.facebook.com/groups/263478457387742/?ref=group_browse
+           https://www.facebook.com/groups/219149691629665/?ref=group_browse
+           https://www.facebook.com/groups/158104881300398/?ref=group_browse
+           https://www.facebook.com/groups/145154729361156/?ref=group_browse
+           https://www.facebook.com/groups/122401685029534/?ref=group_browse
+  )
+
+  def auto_post
+    caps = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: {
+        args: ['--user-data-dir=/Users/enechange/Library/Application\ Support/Google/Chrome/']
+      }
+    )
+
+    driver = Selenium::WebDriver.for :chrome, desired_capabilities: caps
+    driver.get('https://www.facebook.com/')
+
+    driver.find_element(id: 'email').send_keys('undivalent.1999@i.softbank.jp')
+    driver.find_element(id: 'pass').send_keys('yuichi99')
+    driver.find_element(css: ".login_form_login_button > input").click
+
+    # 副業で人生の選択肢を豊かに
+    # driver.get('https://www.facebook.com/groups/535507933586699')
+    # driver.find_element(name: 'xhpc_message_text').send_keys(WB)
+    # driver.find_element(name: 'q').click
+    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    # driver.find_element(css: "div._332r > button").click
+    # sleep 10
+    # driver.find_element(class_name: 'selected').click
+
+    # driver.execute_script('window.open()')
+    # driver.switch_to.window(driver.window_handles[1])
+    # driver.get('https://www.facebook.com/groups/295679260853194/')
+
+
+    URLS.each_with_index do |url, i|
+      driver.get(url)
+      driver.find_element(name: 'xhpc_message_text').send_keys(WB)
+      # driver.execute_script('document.getElementsByClassName("xhpc_message_text")[0].value="%s";' % WB)
+      # driver.execute_script('alert(document.findElements(By.className("xhpc_message_text").getText()));')
+
+      driver.execute_script('window.open()')
+      driver.switch_to.window(driver.window_handles[i + 1])
+    end
+  end
 
   def create
     product_description = product_description_params
@@ -63,8 +163,7 @@ class ProductDescriptionsController < ApplicationController
   def exhibition(title, description, price)
     caps = Selenium::WebDriver::Remote::Capabilities.chrome(
       chromeOptions: {
-        args: ['--user-data-dir=/Users/enechange/Library/Application\ Support/Google/Chrome'],
-        w3c: false
+        args: ['--user-data-dir=/Users/enechange/Library/Application\ Support/Google/Chrome/']
       }
     )
 
